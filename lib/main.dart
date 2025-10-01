@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
+
 import 'package:shopyo/shopyo_store_app.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Platform.isAndroid
+      ? await Firebase.initializeApp(
+          options: FirebaseOptions(
+            apiKey: 'AIzaSyCz9NTkuGt6AtLj3LLBa88MNP4sWYTwyqU',
+            appId: "1:297809629495:android:177e96d579d216037ccab2",
+            messagingSenderId: "297809629495",
+            projectId: "shopyo-9e378",
+          ),
+        )
+      : await Firebase.initializeApp();
   runApp(ShopyoStoreApp());
 }

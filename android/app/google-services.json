@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "297809629495",
+    "project_id": "shopyo-9e378",
+    "storage_bucket": "shopyo-9e378.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297809629495:android:177e96d579d216037ccab2",
+        "android_client_info": {
+          "package_name": "com.example.shopyo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCz9NTkuGt6AtLj3LLBa88MNP4sWYTwyqU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
