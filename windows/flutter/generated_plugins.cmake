@@ -3,10 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-<<<<<<< HEAD
   connectivity_plus
-=======
->>>>>>> 390baa4fdbd828df87c2e3b3280942fd20f2b37a
   firebase_core
 )
 
