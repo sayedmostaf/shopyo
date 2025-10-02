@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shopyo/core/app/env.variables.dart';
 
 class ShopyoStoreApp extends StatelessWidget {
   const ShopyoStoreApp({super.key});
@@ -6,6 +7,7 @@ class ShopyoStoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
       title: 'Shopyo Store',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
