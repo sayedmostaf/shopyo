@@ -25,6 +25,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/icons/app_icon.jpg"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/images/icons/play_store_512.png"
+
 flutter:
 
   uses-material-design: true
@@ -33,6 +40,7 @@ flutter:
     - .env.dev
     - .env.prod
     - assets/images/core/
+    - assets/images/icons/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
   # For details regarding adding assets from package dependencies, see
