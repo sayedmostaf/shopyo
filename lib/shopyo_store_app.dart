@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/app/connectivity_controller.dart';
 import 'package:shopyo/core/app/env.variables.dart';
 import 'package:shopyo/core/common/screens/no_network_screen.dart';
@@ -12,24 +13,28 @@ class ShopyoStoreApp extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, _) {
         if (value) {
-          return MaterialApp(
-            title: 'Shopyo Store',
-            debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-              useMaterial3: true,
+          return ScreenUtilInit(
+            minTextAdapt: true,
+            designSize: const Size(375, 812),
+            child: MaterialApp(
+              title: 'Shopyo Store',
+              debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+                useMaterial3: true,
+              ),
+              builder: (context, widget) {
+                return Scaffold(
+                  body: Builder(
+                    builder: (context) {
+                      ConnectivityController.instance.init();
+                      return widget!;
+                    },
+                  ),
+                );
+              },
+              home: Scaffold(appBar: AppBar(title: const Text('Shopyo Store'))),
             ),
-            builder: (context, widget) {
-              return Scaffold(
-                body: Builder(
-                  builder: (context) {
-                    ConnectivityController.instance.init();
-                    return widget!;
-                  },
-                ),
-              );
-            },
-            home: Scaffold(appBar: AppBar(title: const Text('Asroo Store'))),
           );
         } else {
           return MaterialApp(

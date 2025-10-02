@@ -8,22 +8,21 @@ environment:
   sdk: ^3.8.1
 
 dependencies:
-  cupertino_icons: ^1.0.8
-# Core
   connectivity_plus: ^7.0.0
-  flutter_dotenv: ^6.0.0
-  flutter_screenutil: ^5.9.3
-# Firebase
+  cupertino_icons: ^1.0.8
   firebase_core: ^4.1.1
   flutter:
     sdk: flutter
+  flutter_dotenv: ^6.0.0
+  flutter_native_splash: ^2.4.6
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
-  flutter_lints: ^5.0.0
-  very_good_analysis: ^8.0.0
   flutter_launcher_icons: ^0.14.4
+  flutter_lints: ^5.0.0
   flutter_test:
     sdk: flutter
+  very_good_analysis: ^8.0.0
 
 flutter_icons:
   android: true
