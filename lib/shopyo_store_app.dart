@@ -3,6 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/app/connectivity_controller.dart';
 import 'package:shopyo/core/app/env.variables.dart';
 import 'package:shopyo/core/common/screens/no_network_screen.dart';
+import 'package:shopyo/core/style/fonts/font_family_helper.dart';
+
+import 'core/style/fonts/font_weight_helper.dart';
 
 class ShopyoStoreApp extends StatelessWidget {
   const ShopyoStoreApp({super.key});
@@ -33,7 +36,49 @@ class ShopyoStoreApp extends StatelessWidget {
                   ),
                 );
               },
-              home: Scaffold(appBar: AppBar(title: const Text('Shopyo Store'))),
+              home: Scaffold(
+                appBar: AppBar(title: const Text('Shopyo Store')),
+                body: const Center(
+                  child: Column(
+                    children: [
+                      // Old
+                      Text(
+                        'Old Font',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      Text(
+                        'سيد مصطفي',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+
+                      // New
+                      Text(
+                        'Old Font',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: FontFamilyHelper.poppinsEnglish,
+                          fontWeight: FontWeightHelper.bold,
+                        ),
+                      ),
+
+                      Text(
+                        'سيد مصطفي',
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: FontFamilyHelper.cairoArabic,
+                          fontWeight: FontWeightHelper.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           );
         } else {
