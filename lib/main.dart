@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
+import 'package:shopyo/core/app/env.variables.dart';
 
 import 'package:shopyo/shopyo_store_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EnvVariable.instance.init(envType: EnvTypeEnum.dev);
   Platform.isAndroid
       ? await Firebase.initializeApp(
           options: FirebaseOptions(
@@ -16,5 +19,10 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
-  runApp(ShopyoStoreApp());
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(const ShopyoStoreApp());
+  });
 }
