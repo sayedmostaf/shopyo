@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:shopyo/core/style/theme/color_extension.dart';
+import 'package:shopyo/core/style/theme/image_extension.dart';
 
 extension ContextExt on BuildContext {
+  MyColors get color => Theme.of(this).extension<MyColors>()!;
+  MyImages get asset => Theme.of(this).extension<MyImages>()!;
   Future<dynamic> pushName(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
