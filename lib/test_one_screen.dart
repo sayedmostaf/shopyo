@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/language/lang_keys.dart';
 import 'package:shopyo/core/routes/app_routes.dart';
 
 class TestOneScreen extends StatelessWidget {
@@ -22,6 +23,10 @@ class TestOneScreen extends StatelessWidget {
                 style: TextStyle(color: context.color.mainColor, fontSize: 30),
               ),
             ),
+          ),
+          Text(
+            context.translate(LangKeys.appName),
+            style: TextStyle(color: Colors.black, fontSize: 40),
           ),
           Image.asset(context.asset.testImage ?? ""),
         ],

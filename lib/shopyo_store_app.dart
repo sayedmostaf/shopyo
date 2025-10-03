@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/app/connectivity_controller.dart';
 import 'package:shopyo/core/app/env.variables.dart';
 import 'package:shopyo/core/common/screens/no_network_screen.dart';
+import 'package:shopyo/core/language/app_localizations_setup.dart';
 import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/theme/app_theme.dart';
@@ -25,6 +26,12 @@ class ShopyoStoreApp extends StatelessWidget {
               title: 'Shopyo Store',
               debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
               theme: themeDark(),
+              locale: Locale('ar'),
+              supportedLocales: AppLocalizationsSetup.supportedLocales,
+              localizationsDelegates:
+                  AppLocalizationsSetup.localizationsDelegates,
+              localeResolutionCallback:
+                  AppLocalizationsSetup.localeResolutionCallback,
               builder: (context, widget) {
                 return Scaffold(
                   body: Builder(
