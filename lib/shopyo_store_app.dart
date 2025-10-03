@@ -5,6 +5,7 @@ import 'package:shopyo/core/app/env.variables.dart';
 import 'package:shopyo/core/common/screens/no_network_screen.dart';
 import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
+import 'package:shopyo/core/style/theme/app_theme.dart';
 
 import 'core/style/fonts/font_weight_helper.dart';
 
@@ -23,10 +24,7 @@ class ShopyoStoreApp extends StatelessWidget {
             child: MaterialApp(
               title: 'Shopyo Store',
               debugShowCheckedModeBanner: EnvVariable.instance.debugMode,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-                useMaterial3: true,
-              ),
+              theme: themeDark(),
               builder: (context, widget) {
                 return Scaffold(
                   body: Builder(
