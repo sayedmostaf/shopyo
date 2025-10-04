@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
+import 'package:shopyo/core/app/bloc_observer.dart';
 import 'package:shopyo/core/app/env.variables.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:shopyo/shopyo_store_app.dart';
 
@@ -19,6 +21,8 @@ void main() async {
           ),
         )
       : await Firebase.initializeApp();
+  Bloc.observer = AppBlocObserver();
+
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitDown,
     DeviceOrientation.portraitUp,
