@@ -11,6 +11,8 @@ extension ContextExt on BuildContext {
     return AppLocalizations.of(this)!.translate(langKey).toString();
   }
 
+  TextStyle get textStyle => Theme.of(this).textTheme.displaySmall!;
+
   Future<dynamic> pushName(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }

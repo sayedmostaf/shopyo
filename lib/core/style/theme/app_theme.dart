@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/colors/colors_light.dart';
+import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/theme/color_extension.dart';
 import 'package:shopyo/core/style/theme/assets_extension.dart';
 
@@ -9,6 +10,13 @@ ThemeData themeDark() {
     scaffoldBackgroundColor: ColorsDark.mainColor,
     extensions: <ThemeExtension<dynamic>>[MyColors.dark, MyAssets.dark],
     useMaterial3: true,
+    textTheme: TextTheme(
+      displaySmall: TextStyle(
+        fontSize: 14,
+        color: ColorsDark.white,
+        fontFamily: FontFamilyHelper.getLocalizedFontFamily(),
+      ),
+    ),
   );
 }
 
@@ -17,5 +25,12 @@ ThemeData themeLight() {
     scaffoldBackgroundColor: ColorsLight.mainColor,
     extensions: <ThemeExtension<dynamic>>[MyColors.light, MyAssets.light],
     useMaterial3: true,
+    textTheme: TextTheme(
+      displaySmall: TextStyle(
+        fontSize: 14,
+        color: ColorsLight.black,
+        fontFamily: FontFamilyHelper.getLocalizedFontFamily(),
+      ),
+    ),
   );
 }
