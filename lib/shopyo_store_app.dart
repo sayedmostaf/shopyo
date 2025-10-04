@@ -48,7 +48,7 @@ class ShopyoStoreApp extends StatelessWidget {
                 );
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
-              initialRoute: AppRoutes.testOne,
+              initialRoute: AppRoutes.login,
             ),
           );
         } else {
