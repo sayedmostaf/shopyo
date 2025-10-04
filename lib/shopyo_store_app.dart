@@ -33,17 +33,22 @@ class ShopyoStoreApp extends StatelessWidget {
               localeResolutionCallback:
                   AppLocalizationsSetup.localeResolutionCallback,
               builder: (context, widget) {
-                return Scaffold(
-                  body: Builder(
-                    builder: (context) {
-                      ConnectivityController.instance.init();
-                      return widget!;
-                    },
+                return GestureDetector(
+                  onTap: () {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
+                  child: Scaffold(
+                    body: Builder(
+                      builder: (context) {
+                        ConnectivityController.instance.init();
+                        return widget!;
+                      },
+                    ),
                   ),
                 );
               },
               onGenerateRoute: AppRoutes.onGenerateRoute,
-              initialRoute: AppRoutes.testOne,
+              initialRoute: AppRoutes.login,
             ),
           );
         } else {
