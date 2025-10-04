@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/language/app_localizations.dart';
 import 'package:shopyo/core/style/theme/color_extension.dart';
-import 'package:shopyo/core/style/theme/image_extension.dart';
+import 'package:shopyo/core/style/theme/assets_extension.dart';
 
 extension ContextExt on BuildContext {
   MyColors get color => Theme.of(this).extension<MyColors>()!;
-  MyImages get asset => Theme.of(this).extension<MyImages>()!;
+  MyAssets get asset => Theme.of(this).extension<MyAssets>()!;
 
   String translate(String langKey) {
     return AppLocalizations.of(this)!.translate(langKey).toString();

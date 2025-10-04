@@ -28,7 +28,7 @@ class TestOneScreen extends StatelessWidget {
             context.translate(LangKeys.appName),
             style: TextStyle(color: Colors.black, fontSize: 40),
           ),
-          Image.asset(context.asset.testImage ?? ""),
+          // Image.asset(context.asset.testImage ?? ""),
         ],
       ),
     );
