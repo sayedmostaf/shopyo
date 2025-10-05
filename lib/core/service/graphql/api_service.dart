@@ -14,5 +14,5 @@ abstract class ApiService {
   @POST(graphql)
   Future<LoginResponse> login(@Body() Map<String, dynamic> mutation);
   @GET('/api/v1/auth/profile')
-  Future<UserRoleResponse> userRole(@Body() Map<String, dynamic> getUserRole);
+  Future<UserRoleResponse> userRole();
 }
