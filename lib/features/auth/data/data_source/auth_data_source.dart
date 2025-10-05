@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/qraphql_queries/auth/auth_queries.dart';
 import 'package:shopyo/features/auth/data/models/login_request_body.dart';
@@ -16,8 +17,12 @@ class AuthDataSource {
     return response;
   }
 
-  Future<UserRoleResponse> userRole() async {
-    final response = await _graphql.userRole();
+  Future<UserRoleResponse> userRole(String token) async {
+    final dio = Dio();
+    dio.options.headers['Authorization'] = 'Bearer $token';
+    final client = ApiService(dio);
+    final response = await client.userRole();
+    debugPrint('User Role => ${response.userRole}');
     return response;
   }
 }
