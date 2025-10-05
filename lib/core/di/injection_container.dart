@@ -2,10 +2,14 @@ import 'package:get_it/get_it.dart';
 import 'package:shopyo/core/app/app_cubit/app_cubit.dart';
 import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/dio_factory.dart';
+import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
+import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
+import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> setupInjector() async {
   await _initCore();
+  await _initAuth();
 }
 
 Future<void> _initCore() async {
@@ -13,4 +17,11 @@ Future<void> _initCore() async {
   sl
     ..registerFactory(AppCubit.new)
     ..registerLazySingleton(() => ApiService(dio));
+}
+
+Future<void> _initAuth() async {
+  sl
+    ..registerFactory(() => AuthBloc(sl()))
+    ..registerLazySingleton(() => AuthRepo(sl()))
+    ..registerLazySingleton(() => AuthDataSource(sl()));
 }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/common/screens/page_under_build_screen.dart';
+import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/routes/base_routes.dart';
+import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/auth/presentation/screens/login_screen.dart';
 import 'package:shopyo/features/auth/presentation/screens/sign_up_screen.dart';
 
@@ -13,8 +16,13 @@ class AppRoutes {
     final args = settings.arguments;
     switch (settings.name) {
       case login:
-        return BaseRoutes(page: LoginScreen());
-        case signUp:
+        return BaseRoutes(
+          page: BlocProvider(
+            create: (context) => sl<AuthBloc>(),
+            child: LoginScreen(),
+          ),
+        );
+      case signUp:
         return BaseRoutes(page: SignUpScreen());
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
