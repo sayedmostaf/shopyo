@@ -61,6 +61,7 @@ class ShopyoStoreApp extends StatelessWidget {
                         ),
                       );
                     },
+                    navigatorKey: sl<GlobalKey<NavigatorState>>(),
                     onGenerateRoute: AppRoutes.onGenerateRoute,
                     initialRoute:
                         SharedPref().getString(PrefKeys.accessToken) != null
