@@ -17,30 +17,46 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo _repo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
   AuthBloc(this._repo) : super(_Initial()) {
     on<LoginEvent>(_login);
   }
   FutureOr<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
+
     final result = await _repo.login(
       LoginRequestBody(
         email: emailController.text.trim(),
         password: passwordController.text,
       ),
     );
+
+    await _handleLoginResult(result, emit);
+  }
+
+  Future<void> _handleLoginResult(
+    ApiResult result,
+    Emitter<AuthState> emit,
+  ) async {
     result.when(
       success: (loginData) async {
-        // user token
         final token = loginData.data.login.accessToken ?? "";
+
         // save token
         await SharedPref().setString(PrefKeys.accessToken, token);
+
         // get user role
         final user = await _repo.userRole(token);
-        // save user id
+
+        // save user id + role
         await SharedPref().setInt(PrefKeys.userId, user.userId ?? 0);
+        await SharedPref().setString(PrefKeys.userRole, user.userRole ?? '');
+
+        if (emit.isDone) return;
         emit(AuthState.success(userRole: user.userRole ?? ""));
       },
       failure: (error) {
+        if (emit.isDone) return;
         emit(AuthState.error(error: error));
       },
     );

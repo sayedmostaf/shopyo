@@ -1,3 +1,4 @@
+import 'package:shopyo/core/language/lang_keys.dart';
 import 'package:shopyo/core/service/graphql/api_result.dart';
 import 'package:shopyo/core/utils/app_strings.dart';
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
@@ -14,7 +15,7 @@ class AuthRepo {
       final response = await _dataSource.login(body: body);
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure(errorMessage);
+      return ApiResult.failure(LangKeys.loggedError);
     }
   }
 
