@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/screens/page_under_build_screen.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/routes/base_routes.dart';
@@ -27,7 +28,14 @@ class AppRoutes {
           ),
         );
       case signUp:
-        return BaseRoutes(page: SignUpScreen());
+        return BaseRoutes(
+          page: MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => sl<UploadImageCubit>()),
+            ],
+            child: SignUpScreen(),
+          ),
+        );
       case homeAdmin:
         return BaseRoutes(page: HomeAdminScreen());
       case homeCustomer:
