@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:shopyo/core/service/graphql/api_result.dart';
 import 'package:shopyo/core/service/shared_pref/pref_keys.dart';
 import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 import 'package:shopyo/features/auth/data/models/login_request_body.dart';
+import 'package:shopyo/features/auth/data/models/sign_up_request_body.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 
 part 'auth_event.dart';
@@ -17,9 +19,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final AuthRepo _repo;
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   AuthBloc(this._repo) : super(_Initial()) {
     on<LoginEvent>(_login);
+    on<SignUpEvent>(_signUp);
   }
   FutureOr<void> _login(LoginEvent event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
@@ -57,6 +61,26 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       },
       failure: (error) {
         if (emit.isDone) return;
+        emit(AuthState.error(error: error));
+      },
+    );
+  }
+
+  FutureOr<void> _signUp(SignUpEvent event, Emitter<AuthState> emit) async {
+    emit(const AuthState.loading());
+    final result = await _repo.signUp(
+      SignUpRequestBody(
+        name: nameController.text.trim(),
+        email: emailController.text.trim(),
+        password: passwordController.text,
+        avatar: event.imageUrl,
+      ),
+    );
+    result.when(
+      success: (signupData) {
+        add(AuthEvent.login());
+      },
+      failure: (error) {
         emit(AuthState.error(error: error));
       },
     );
