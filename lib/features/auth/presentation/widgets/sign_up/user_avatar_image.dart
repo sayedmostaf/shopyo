@@ -65,6 +65,8 @@ class UserAvatarImage extends StatelessWidget {
                   children: [
                     if (isImageUploaded)
                       Positioned(
+                        top: -15,
+                        right: -15,
                         child: IconButton(
                           onPressed: () {
                             context.read<UploadImageCubit>().removeImage();
