@@ -4,6 +4,8 @@ import 'package:shopyo/core/utils/app_strings.dart';
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/models/login_request_body.dart';
 import 'package:shopyo/features/auth/data/models/login_response.dart';
+import 'package:shopyo/features/auth/data/models/sign_up_request_body.dart';
+import 'package:shopyo/features/auth/data/models/sign_up_response.dart';
 import 'package:shopyo/features/auth/data/models/user_role_response.dart';
 
 class AuthRepo {
@@ -22,5 +24,14 @@ class AuthRepo {
   Future<UserRoleResponse> userRole(String token) async {
     final response = await _dataSource.userRole(token);
     return response;
+  }
+
+  Future<ApiResult<SignUpResponse>> signUp(SignUpRequestBody body) async {
+    try {
+      final response = await _dataSource.signUp(body: body);
+      return ApiResult.success(response);
+    } catch (error) {
+      return ApiResult.failure(LangKeys.loggedError);
+    }
   }
 }
