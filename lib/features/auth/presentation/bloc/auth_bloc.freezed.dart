@@ -12,11 +12,17 @@ part of 'auth_bloc.dart';
 // dart format off
 T _$identity<T>(T value) => value;
 /// @nodoc
-mixin _$AuthEvent {
+mixin _$AuthEvent implements DiagnosticableTreeMixin {
 
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthEvent'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -28,7 +34,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthEvent()';
 }
 
@@ -55,12 +61,13 @@ extension AuthEventPatterns on AuthEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( LoginEvent value)?  login,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( LoginEvent value)?  login,TResult Function( SignUpEvent value)?  signUp,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case LoginEvent() when login != null:
-return login(_that);case _:
+return login(_that);case SignUpEvent() when signUp != null:
+return signUp(_that);case _:
   return orElse();
 
 }
@@ -78,12 +85,13 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( LoginEvent value)  login,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( LoginEvent value)  login,required TResult Function( SignUpEvent value)  signUp,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case LoginEvent():
-return login(_that);case _:
+return login(_that);case SignUpEvent():
+return signUp(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +108,13 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( LoginEvent value)?  login,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( LoginEvent value)?  login,TResult? Function( SignUpEvent value)?  signUp,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case LoginEvent() when login != null:
-return login(_that);case _:
+return login(_that);case SignUpEvent() when signUp != null:
+return signUp(_that);case _:
   return null;
 
 }
@@ -122,11 +131,12 @@ return login(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  login,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  login,TResult Function( String imageUrl)?  signUp,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case LoginEvent() when login != null:
-return login();case _:
+return login();case SignUpEvent() when signUp != null:
+return signUp(_that.imageUrl);case _:
   return orElse();
 
 }
@@ -144,11 +154,12 @@ return login();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  login,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  login,required TResult Function( String imageUrl)  signUp,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case LoginEvent():
-return login();case _:
+return login();case SignUpEvent():
+return signUp(_that.imageUrl);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +176,12 @@ return login();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  login,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  login,TResult? Function( String imageUrl)?  signUp,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case LoginEvent() when login != null:
-return login();case _:
+return login();case SignUpEvent() when signUp != null:
+return signUp(_that.imageUrl);case _:
   return null;
 
 }
@@ -180,7 +192,7 @@ return login();case _:
 /// @nodoc
 
 
-class _Started implements AuthEvent {
+class _Started with DiagnosticableTreeMixin implements AuthEvent {
   const _Started();
   
 
@@ -188,6 +200,12 @@ class _Started implements AuthEvent {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthEvent.started'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -199,7 +217,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthEvent.started()';
 }
 
@@ -212,7 +230,7 @@ String toString() {
 /// @nodoc
 
 
-class LoginEvent implements AuthEvent {
+class LoginEvent with DiagnosticableTreeMixin implements AuthEvent {
   const LoginEvent();
   
 
@@ -220,6 +238,12 @@ class LoginEvent implements AuthEvent {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthEvent.login'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -231,7 +255,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthEvent.login()';
 }
 
@@ -242,11 +266,89 @@ String toString() {
 
 
 /// @nodoc
-mixin _$AuthState {
+
+
+class SignUpEvent with DiagnosticableTreeMixin implements AuthEvent {
+  const SignUpEvent({required this.imageUrl});
+  
+
+ final  String imageUrl;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$SignUpEventCopyWith<SignUpEvent> get copyWith => _$SignUpEventCopyWithImpl<SignUpEvent>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthEvent.signUp'))
+    ..add(DiagnosticsProperty('imageUrl', imageUrl));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SignUpEvent&&(identical(other.imageUrl, imageUrl) || other.imageUrl == imageUrl));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,imageUrl);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'AuthEvent.signUp(imageUrl: $imageUrl)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $SignUpEventCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory $SignUpEventCopyWith(SignUpEvent value, $Res Function(SignUpEvent) _then) = _$SignUpEventCopyWithImpl;
+@useResult
+$Res call({
+ String imageUrl
+});
 
 
 
 
+}
+/// @nodoc
+class _$SignUpEventCopyWithImpl<$Res>
+    implements $SignUpEventCopyWith<$Res> {
+  _$SignUpEventCopyWithImpl(this._self, this._then);
+
+  final SignUpEvent _self;
+  final $Res Function(SignUpEvent) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? imageUrl = null,}) {
+  return _then(SignUpEvent(
+imageUrl: null == imageUrl ? _self.imageUrl : imageUrl // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
+mixin _$AuthState implements DiagnosticableTreeMixin {
+
+
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthState'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -258,7 +360,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthState()';
 }
 
@@ -422,7 +524,7 @@ return success(_that.userRole);case _:
 /// @nodoc
 
 
-class _Initial implements AuthState {
+class _Initial with DiagnosticableTreeMixin implements AuthState {
   const _Initial();
   
 
@@ -430,6 +532,12 @@ class _Initial implements AuthState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthState.initial'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -441,7 +549,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthState.initial()';
 }
 
@@ -454,7 +562,7 @@ String toString() {
 /// @nodoc
 
 
-class LoadingState implements AuthState {
+class LoadingState with DiagnosticableTreeMixin implements AuthState {
   const LoadingState();
   
 
@@ -462,6 +570,12 @@ class LoadingState implements AuthState {
 
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthState.loading'))
+    ;
+}
 
 @override
 bool operator ==(Object other) {
@@ -473,7 +587,7 @@ bool operator ==(Object other) {
 int get hashCode => runtimeType.hashCode;
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthState.loading()';
 }
 
@@ -486,7 +600,7 @@ String toString() {
 /// @nodoc
 
 
-class ErrorState implements AuthState {
+class ErrorState with DiagnosticableTreeMixin implements AuthState {
   const ErrorState({required this.error});
   
 
@@ -499,6 +613,12 @@ class ErrorState implements AuthState {
 $ErrorStateCopyWith<ErrorState> get copyWith => _$ErrorStateCopyWithImpl<ErrorState>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthState.error'))
+    ..add(DiagnosticsProperty('error', error));
+}
 
 @override
 bool operator ==(Object other) {
@@ -510,7 +630,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,error);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthState.error(error: $error)';
 }
 
@@ -552,7 +672,7 @@ as String,
 /// @nodoc
 
 
-class SuccessState implements AuthState {
+class SuccessState with DiagnosticableTreeMixin implements AuthState {
   const SuccessState({required this.userRole});
   
 
@@ -565,6 +685,12 @@ class SuccessState implements AuthState {
 $SuccessStateCopyWith<SuccessState> get copyWith => _$SuccessStateCopyWithImpl<SuccessState>(this, _$identity);
 
 
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AuthState.success'))
+    ..add(DiagnosticsProperty('userRole', userRole));
+}
 
 @override
 bool operator ==(Object other) {
@@ -576,7 +702,7 @@ bool operator ==(Object other) {
 int get hashCode => Object.hash(runtimeType,userRole);
 
 @override
-String toString() {
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
   return 'AuthState.success(userRole: $userRole)';
 }
 
