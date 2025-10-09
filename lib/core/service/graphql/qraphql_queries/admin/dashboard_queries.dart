@@ -20,12 +20,12 @@ class DashboardQueries {
   Map<String, dynamic> numberOfCategoriesQuery() {
     return {
       'query': '''
-        {
-          categories{
-            name
+            {
+            categories{
+              name
+            }
           }
-        }
-''',
+      ''',
     };
   }
 

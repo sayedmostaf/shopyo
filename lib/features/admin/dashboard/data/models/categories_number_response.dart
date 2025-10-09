@@ -8,20 +8,20 @@ class CategoriesNumberResponse {
   factory CategoriesNumberResponse.fromJson(Map<String, dynamic> json) =>
       _$CategoriesNumberResponseFromJson(json);
   String get categoriesNumbers {
-    if (data.cateogriesList.isNotEmpty) {
+    if (data.categoriesList.isEmpty) {
       return '0';
     }
-    return data.cateogriesList.length.toString();
+    return data.categoriesList.length.toString();
   }
 }
 
 @JsonSerializable()
 class CategoriesNumberData {
-  CategoriesNumberData(this.cateogriesList);
+  CategoriesNumberData(this.categoriesList);
   factory CategoriesNumberData.fromJson(Map<String, dynamic> json) =>
       _$CategoriesNumberDataFromJson(json);
   @JsonKey(name: 'categories')
-  final List<CategoriesNumberModel> cateogriesList;
+  final List<CategoriesNumberModel> categoriesList;
 }
 
 @JsonSerializable()

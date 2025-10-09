@@ -26,7 +26,7 @@ CategoriesNumberData _$CategoriesNumberDataFromJson(
 
 Map<String, dynamic> _$CategoriesNumberDataToJson(
   CategoriesNumberData instance,
-) => <String, dynamic>{'categories': instance.cateogriesList};
+) => <String, dynamic>{'categories': instance.categoriesList};
 
 CategoriesNumberModel _$CategoriesNumberModelFromJson(
   Map<String, dynamic> json,
