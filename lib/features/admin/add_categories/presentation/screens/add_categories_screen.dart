@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/refactors/add_categories_body.dart';
 
 class AddCategoriesScreen extends StatelessWidget {
   const AddCategoriesScreen({super.key});
@@ -14,12 +15,7 @@ class AddCategoriesScreen extends StatelessWidget {
         isMain: true,
         backgroundColor: ColorsDark.mainColor,
       ),
-      body: Center(
-        child: Text(
-          'Categories Screen',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-      ),
+      body: AddCategoriesBody(),
     );
   }
 }
