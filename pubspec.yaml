@@ -22,6 +22,7 @@ dependencies:
     sdk: flutter
   flutter_native_splash: ^2.4.6
   flutter_screenutil: ^5.9.3
+  flutter_zoom_drawer: ^3.2.0
   fluttertoast: ^9.0.0
   freezed: ^3.2.3
   freezed_annotation: ^3.1.0
@@ -81,7 +82,5 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
-
-
 
 ## dart run build_runner build --delete-conflicting-outputs

@@ -5,7 +5,7 @@ import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/screens/page_under_build_screen.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/routes/base_routes.dart';
-import 'package:shopyo/features/admin/home_admin.dart';
+import 'package:shopyo/features/admin/home_admin/presentation/screens/home_admin_screen.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/auth/presentation/screens/login_screen.dart';
 import 'package:shopyo/features/auth/presentation/screens/sign_up_screen.dart';
