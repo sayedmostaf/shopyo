@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/widgets/create/create_category_bottom_sheet_widget.dart';
 
 class CreateCategory extends StatelessWidget {
   const CreateCategory({super.key});
@@ -25,7 +27,10 @@ class CreateCategory extends StatelessWidget {
         ),
         CustomButton(
           onPressed: () {
-            // TODO: create category bottom sheet
+            CustomBottomSheet.showModalBottomSheetContainer(
+              context: context,
+              widget: CreateCategoryBottomSheetWidget(),
+            );
           },
           backgroundColor: ColorsDark.blueDark,
           text: 'Add',
