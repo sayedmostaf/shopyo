@@ -6,6 +6,11 @@ import 'package:shopyo/core/app/upload_image/data_source/upload_image_data_sourc
 import 'package:shopyo/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/dio_factory.dart';
+import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
+import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
+import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
+import 'package:shopyo/features/admin/dashboard/presentation/blocs/products_number/products_number_bloc.dart';
+import 'package:shopyo/features/admin/dashboard/presentation/blocs/users_number/users_number_bloc.dart';
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
@@ -14,6 +19,7 @@ final sl = GetIt.instance;
 Future<void> setupInjector() async {
   await _initCore();
   await _initAuth();
+  await _initDashboard();
 }
 
 Future<void> _initCore() async {
@@ -33,4 +39,13 @@ Future<void> _initAuth() async {
     ..registerFactory(() => AuthBloc(sl()))
     ..registerLazySingleton(() => AuthRepo(sl()))
     ..registerLazySingleton(() => AuthDataSource(sl()));
+}
+
+Future<void> _initDashboard() async {
+  sl
+    ..registerLazySingleton(() => DashboardDataSource(sl()))
+    ..registerLazySingleton(() => DashboardRepo(sl()))
+    ..registerFactory(() => ProductsNumberBloc(sl()))
+    ..registerFactory(() => CategoriesNumberBloc(sl()))
+    ..registerFactory(() => UsersNumberBloc(sl()));
 }
