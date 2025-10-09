@@ -22,6 +22,7 @@ class ProductsNumberBloc
     GetProductsNumberEvent event,
     Emitter<ProductsNumberState> emit,
   ) async {
+    emit(const ProductsNumberState.loading());
     final result = await _repo.numberOfProducts();
 
     result.when(
