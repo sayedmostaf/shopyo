@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 
 class AddCategoryItem extends StatelessWidget {
   const AddCategoryItem({
@@ -45,7 +47,10 @@ class AddCategoryItem extends StatelessWidget {
                     SizedBox(width: 20.h),
                     InkWell(
                       onTap: () {
-                        // TODO: Update category
+                        CustomBottomSheet.showModalBottomSheetContainer(
+                          context: context,
+                          widget: UpdateCategoryBottomSheetWidget(),
+                        );
                       },
                       child: Icon(Icons.edit, color: Colors.green, size: 25),
                     ),
