@@ -25,13 +25,21 @@ class AuthQueries {
   Map<String, dynamic> signUpMapQuery({required SignUpRequestBody body}) {
     return {
       'query': r'''
-    mutation SignUp($name: String!, $email: String!, $password: String!, $avatar: String!){
-      addUser(name: $name, email: $email, password: $password, avatar: $avatar, role: customer){
-      id
-      email
-      }
-    }
-''',
+              mutation SignUp($name: String!, $email: String! , $password: String!, $avatar: String!) {
+              addUser(
+                data: {
+                  name: $name
+                  email: $email
+                  password:$password
+                  avatar: $avatar
+                  role: customer
+                }
+              ) {
+                id
+                email
+              }
+            }
+        ''',
       'variables': {
         'name': body.name,
         'email': body.email,
