@@ -8,6 +8,7 @@ import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/dio_factory.dart';
 import 'package:shopyo/features/admin/add_categories/data/data_source/categories_admin_data_source.dart';
 import 'package:shopyo/features/admin/add_categories/data/repos/categories_admin_repo.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_category/create_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
@@ -58,5 +59,6 @@ Future<void> _initCategoriesAdmin() async {
   sl
     ..registerLazySingleton(() => CategoriesAdminRepo(sl()))
     ..registerLazySingleton(() => CategoriesAdminDataSource(sl()))
-    ..registerFactory(() => GetAllAdminCategoriesBloc(sl()));
+    ..registerFactory(() => GetAllAdminCategoriesBloc(sl()))
+    ..registerFactory(() => CreateCategoryBloc(sl()));
 }

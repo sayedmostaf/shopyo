@@ -1,3 +1,5 @@
+import 'package:shopyo/features/admin/add_categories/data/models/create_category_request_body.dart';
+
 class CategoriesQueries {
   const CategoriesQueries._();
   factory CategoriesQueries() {
@@ -16,6 +18,23 @@ class CategoriesQueries {
             }
           }
       ''',
+    };
+  }
+
+  Map<String, dynamic> createCategoryQuery(CreateCategoryRequestBody body) {
+    return {
+      'query': r'''
+          mutation Create($name: String!, $image: String!) {
+            addCategory(
+              data: {name: $name, image: $image}
+            ) {
+              id
+              name
+              image
+            }
+          }
+        ''',
+      'variables': {'name': body.name, 'image': body.image},
     };
   }
 }

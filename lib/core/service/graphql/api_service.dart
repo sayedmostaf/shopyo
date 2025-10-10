@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 import 'package:shopyo/core/app/upload_image/model/upload_image_response.dart';
+import 'package:shopyo/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:shopyo/features/admin/add_categories/data/models/get_all_categories_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/categories_number_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/products_number_response.dart';
@@ -41,5 +42,10 @@ abstract class ApiService {
   @POST(graphql)
   Future<GetAllCategoriesResponse> getAllCategories(
     @Body() Map<String, dynamic> query,
+  );
+
+  @POST(graphql)
+  Future<CreateCategoryResponse> createCategory(
+    @Body() Map<String, dynamic> mutation,
   );
 }
