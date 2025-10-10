@@ -55,12 +55,12 @@ extension GetAllAdminCategoriesEventPatterns on GetAllAdminCategoriesEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( FetchCategoriesEvent value)?  fetchCategories,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( FetchAdminCategoriesEvent value)?  fetchAdminCategories,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case FetchCategoriesEvent() when fetchCategories != null:
-return fetchCategories(_that);case _:
+return started(_that);case FetchAdminCategoriesEvent() when fetchAdminCategories != null:
+return fetchAdminCategories(_that);case _:
   return orElse();
 
 }
@@ -78,12 +78,12 @@ return fetchCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( FetchCategoriesEvent value)  fetchCategories,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( FetchAdminCategoriesEvent value)  fetchAdminCategories,}){
 final _that = this;
 switch (_that) {
 case _Started():
-return started(_that);case FetchCategoriesEvent():
-return fetchCategories(_that);case _:
+return started(_that);case FetchAdminCategoriesEvent():
+return fetchAdminCategories(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -100,12 +100,12 @@ return fetchCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( FetchCategoriesEvent value)?  fetchCategories,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( FetchAdminCategoriesEvent value)?  fetchAdminCategories,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started(_that);case FetchCategoriesEvent() when fetchCategories != null:
-return fetchCategories(_that);case _:
+return started(_that);case FetchAdminCategoriesEvent() when fetchAdminCategories != null:
+return fetchAdminCategories(_that);case _:
   return null;
 
 }
@@ -122,11 +122,11 @@ return fetchCategories(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  fetchCategories,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  fetchAdminCategories,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case FetchCategoriesEvent() when fetchCategories != null:
-return fetchCategories();case _:
+return started();case FetchAdminCategoriesEvent() when fetchAdminCategories != null:
+return fetchAdminCategories();case _:
   return orElse();
 
 }
@@ -144,11 +144,11 @@ return fetchCategories();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  fetchCategories,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  fetchAdminCategories,}) {final _that = this;
 switch (_that) {
 case _Started():
-return started();case FetchCategoriesEvent():
-return fetchCategories();case _:
+return started();case FetchAdminCategoriesEvent():
+return fetchAdminCategories();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -165,11 +165,11 @@ return fetchCategories();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  fetchCategories,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  fetchAdminCategories,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
-return started();case FetchCategoriesEvent() when fetchCategories != null:
-return fetchCategories();case _:
+return started();case FetchAdminCategoriesEvent() when fetchAdminCategories != null:
+return fetchAdminCategories();case _:
   return null;
 
 }
@@ -212,8 +212,8 @@ String toString() {
 /// @nodoc
 
 
-class FetchCategoriesEvent implements GetAllAdminCategoriesEvent {
-  const FetchCategoriesEvent();
+class FetchAdminCategoriesEvent implements GetAllAdminCategoriesEvent {
+  const FetchAdminCategoriesEvent();
   
 
 
@@ -223,7 +223,7 @@ class FetchCategoriesEvent implements GetAllAdminCategoriesEvent {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchCategoriesEvent);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchAdminCategoriesEvent);
 }
 
 
@@ -232,7 +232,7 @@ int get hashCode => runtimeType.hashCode;
 
 @override
 String toString() {
-  return 'GetAllAdminCategoriesEvent.fetchCategories()';
+  return 'GetAllAdminCategoriesEvent.fetchAdminCategories()';
 }
 
 
