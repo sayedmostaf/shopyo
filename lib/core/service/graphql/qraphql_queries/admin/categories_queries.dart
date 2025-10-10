@@ -40,7 +40,7 @@ class CategoriesQueries {
 
   Map<String,dynamic>deleteCategoryQuery({required String categoryId}){
     return{
-      'query': '''
+      'query': r'''
             mutation DeleteCategory($categoryId: ID!) {
               deleteCategory(id: $categoryId)
             }

@@ -7,6 +7,7 @@ import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 
 class AddCategoryItem extends StatelessWidget {
@@ -43,7 +44,7 @@ class AddCategoryItem extends StatelessWidget {
                 Spacer(),
                 Row(
                   children: [
-                    Icon(Icons.delete, color: Colors.red, size: 25),
+                    DeleteCategoryWidget(categoryId: categoryId),
                     SizedBox(width: 20.h),
                     InkWell(
                       onTap: () {

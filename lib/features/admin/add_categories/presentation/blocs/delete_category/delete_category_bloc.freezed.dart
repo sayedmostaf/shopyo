@@ -416,11 +416,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function()?  success,TResult Function( String error)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function( String categoryId)?  loading,TResult Function()?  success,TResult Function( String error)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case LoadingState() when loading != null:
-return loading();case SuccessState() when success != null:
+return loading(_that.categoryId);case SuccessState() when success != null:
 return success();case ErrorState() when error != null:
 return error(_that.error);case _:
   return orElse();
@@ -440,11 +440,11 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function()  success,required TResult Function( String error)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function( String categoryId)  loading,required TResult Function()  success,required TResult Function( String error)  error,}) {final _that = this;
 switch (_that) {
 case _Initial():
 return initial();case LoadingState():
-return loading();case SuccessState():
+return loading(_that.categoryId);case SuccessState():
 return success();case ErrorState():
 return error(_that.error);case _:
   throw StateError('Unexpected subclass');
@@ -463,11 +463,11 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function()?  success,TResult? Function( String error)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function( String categoryId)?  loading,TResult? Function()?  success,TResult? Function( String error)?  error,}) {final _that = this;
 switch (_that) {
 case _Initial() when initial != null:
 return initial();case LoadingState() when loading != null:
-return loading();case SuccessState() when success != null:
+return loading(_that.categoryId);case SuccessState() when success != null:
 return success();case ErrorState() when error != null:
 return error(_that.error);case _:
   return null;
@@ -519,39 +519,73 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class LoadingState with DiagnosticableTreeMixin implements DeleteCategoryState {
-  const LoadingState();
+  const LoadingState({required this.categoryId});
   
 
+ final  String categoryId;
 
-
+/// Create a copy of DeleteCategoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LoadingStateCopyWith<LoadingState> get copyWith => _$LoadingStateCopyWithImpl<LoadingState>(this, _$identity);
 
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'DeleteCategoryState.loading'))
-    ;
+    ..add(DiagnosticsProperty('categoryId', categoryId));
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadingState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadingState&&(identical(other.categoryId, categoryId) || other.categoryId == categoryId));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,categoryId);
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'DeleteCategoryState.loading()';
+  return 'DeleteCategoryState.loading(categoryId: $categoryId)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $LoadingStateCopyWith<$Res> implements $DeleteCategoryStateCopyWith<$Res> {
+  factory $LoadingStateCopyWith(LoadingState value, $Res Function(LoadingState) _then) = _$LoadingStateCopyWithImpl;
+@useResult
+$Res call({
+ String categoryId
+});
 
 
+
+
+}
+/// @nodoc
+class _$LoadingStateCopyWithImpl<$Res>
+    implements $LoadingStateCopyWith<$Res> {
+  _$LoadingStateCopyWithImpl(this._self, this._then);
+
+  final LoadingState _self;
+  final $Res Function(LoadingState) _then;
+
+/// Create a copy of DeleteCategoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? categoryId = null,}) {
+  return _then(LoadingState(
+categoryId: null == categoryId ? _self.categoryId : categoryId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
