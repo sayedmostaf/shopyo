@@ -10,7 +10,6 @@ import 'package:shopyo/features/admin/add_categories/presentation/widgets/update
 
 class UpdateCategoryBottomSheetWidget extends StatefulWidget {
   const UpdateCategoryBottomSheetWidget({super.key});
-  get imageUrl => null;
 
   @override
   State<UpdateCategoryBottomSheetWidget> createState() =>

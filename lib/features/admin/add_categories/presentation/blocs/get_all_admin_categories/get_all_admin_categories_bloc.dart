@@ -20,7 +20,9 @@ class GetAllAdminCategoriesBloc
     FetchAdminCategoriesEvent event,
     Emitter<GetAllAdminCategoriesState> emit,
   ) async {
-    emit(GetAllAdminCategoriesState.loading());
+    if (event.isNotLoading) {
+      emit(GetAllAdminCategoriesState.loading());
+    }
     final result = await _repo.getAllCategoriesAdmin();
     result.when(
       success: (data) {
