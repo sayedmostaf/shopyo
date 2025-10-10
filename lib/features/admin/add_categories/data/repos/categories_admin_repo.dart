@@ -29,4 +29,13 @@ class CategoriesAdminRepo {
       return ApiResult.failure(errorMessage);
     }
   }
+
+  Future<ApiResult<void>> deleteCategory({required String categoryIds}) async {
+    try {
+      final response = await _dataSource.deleteCategory(categoryIds);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(errorMessage);
+    }
+  }
 }

@@ -37,4 +37,17 @@ class CategoriesQueries {
       'variables': {'name': body.name, 'image': body.image},
     };
   }
+
+  Map<String,dynamic>deleteCategoryQuery({required String categoryId}){
+    return{
+      'query': '''
+            mutation DeleteCategory($categoryId: ID!) {
+              deleteCategory(id: $categoryId)
+            }
+      ''',
+      'variables': {
+        'categoryId': categoryId,
+      },
+    };
+  }
 }

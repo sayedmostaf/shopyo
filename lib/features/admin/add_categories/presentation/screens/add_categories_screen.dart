@@ -4,6 +4,7 @@ import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_category/create_category_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/delete_category/delete_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/refactors/add_categories_body.dart';
 
@@ -23,6 +24,7 @@ class AddCategoriesScreen extends StatelessWidget {
             ),
         ),
         BlocProvider(create: (context) => sl<CreateCategoryBloc>()),
+        BlocProvider(create: (context) => sl<DeleteCategoryBloc>()),
       ],
       child: Scaffold(
         backgroundColor: ColorsDark.mainColor,

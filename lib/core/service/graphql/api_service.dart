@@ -48,4 +48,6 @@ abstract class ApiService {
   Future<CreateCategoryResponse> createCategory(
     @Body() Map<String, dynamic> mutation,
   );
+  @POST(graphql)
+  Future<void> deleteCategory(@Body() Map<String, dynamic> mutation);
 }
