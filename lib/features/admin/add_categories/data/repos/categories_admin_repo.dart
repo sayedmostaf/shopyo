@@ -4,7 +4,7 @@ import 'package:shopyo/features/admin/add_categories/data/data_source/categories
 import 'package:shopyo/features/admin/add_categories/data/models/create_category_request_body.dart';
 import 'package:shopyo/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:shopyo/features/admin/add_categories/data/models/get_all_categories_response.dart';
-import 'package:shopyo/features/admin/add_categories/presentation/widgets/create/create_category.dart';
+import 'package:shopyo/features/admin/add_categories/data/models/update_category_request_body.dart';
 
 class CategoriesAdminRepo {
   final CategoriesAdminDataSource _dataSource;
@@ -33,6 +33,17 @@ class CategoriesAdminRepo {
   Future<ApiResult<void>> deleteCategory({required String categoryIds}) async {
     try {
       final response = await _dataSource.deleteCategory(categoryIds);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(errorMessage);
+    }
+  }
+
+  Future<ApiResult<void>> updateCategory({
+    required UpdateCategoryRequestBody body,
+  }) async {
+    try {
+      final response = await _dataSource.updateCategory(body);
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(errorMessage);

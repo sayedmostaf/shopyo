@@ -11,6 +11,7 @@ import 'package:shopyo/features/admin/add_categories/data/repos/categories_admin
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_category/create_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/delete_category/delete_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
@@ -62,5 +63,6 @@ Future<void> _initCategoriesAdmin() async {
     ..registerLazySingleton(() => CategoriesAdminDataSource(sl()))
     ..registerFactory(() => GetAllAdminCategoriesBloc(sl()))
     ..registerFactory(() => CreateCategoryBloc(sl()))
-    ..registerFactory(() => DeleteCategoryBloc(sl()));
+    ..registerFactory(() => DeleteCategoryBloc(sl()))
+    ..registerFactory(() => UpdateCategoryBloc(sl()));
 }

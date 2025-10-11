@@ -1,12 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
+import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
 
@@ -48,10 +52,7 @@ class AddCategoryItem extends StatelessWidget {
                     SizedBox(width: 20.h),
                     InkWell(
                       onTap: () {
-                        CustomBottomSheet.showModalBottomSheetContainer(
-                          context: context,
-                          widget: UpdateCategoryBottomSheetWidget(),
-                        );
+                        _updateCategoryBottomSheet(context);
                       },
                       child: Icon(Icons.edit, color: Colors.green, size: 25),
                     ),
@@ -71,6 +72,19 @@ class AddCategoryItem extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _updateCategoryBottomSheet(BuildContext context) {
+    CustomBottomSheet.showModalBottomSheetContainer(
+      context: context,
+      widget: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
+          BlocProvider(create: (context) => sl<UploadImageCubit>()),
+        ],
+        child: const UpdateCategoryBottomSheetWidget(),
       ),
     );
   }
