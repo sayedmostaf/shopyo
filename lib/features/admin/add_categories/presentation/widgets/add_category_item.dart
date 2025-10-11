@@ -10,6 +10,7 @@ import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
@@ -84,8 +85,17 @@ class AddCategoryItem extends StatelessWidget {
           BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
           BlocProvider(create: (context) => sl<UploadImageCubit>()),
         ],
-        child: const UpdateCategoryBottomSheetWidget(),
+        child: UpdateCategoryBottomSheetWidget(
+          imageUrl: image,
+          categoryName: name,
+          categoryId: categoryId,
+        ),
       ),
+      whenComplete: () {
+        context.read<GetAllAdminCategoriesBloc>().add(
+          GetAllAdminCategoriesEvent.fetchAdminCategories(isNotLoading: false),
+        );
+      },
     );
   }
 }
