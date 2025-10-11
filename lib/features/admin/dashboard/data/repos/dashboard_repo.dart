@@ -1,4 +1,5 @@
 import 'package:shopyo/core/service/graphql/api_result.dart';
+import 'package:shopyo/core/utils/app_strings.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/categories_number_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/products_number_response.dart';
@@ -13,7 +14,7 @@ class DashboardRepo {
       final response = await _dataSource.numberOfProducts();
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure('please, try again we have error');
+      return ApiResult.failure(errorMessage);
     }
   }
 
@@ -22,7 +23,7 @@ class DashboardRepo {
       final response = await _dataSource.numberOfCategories();
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure('please, try again we have error');
+      return ApiResult.failure(errorMessage);
     }
   }
 
@@ -31,7 +32,7 @@ class DashboardRepo {
       final response = await _dataSource.numberOfUsers();
       return ApiResult.success(response);
     } catch (error) {
-      return ApiResult.failure('please, try again we have error');
+      return ApiResult.failure(errorMessage);
     }
   }
 }

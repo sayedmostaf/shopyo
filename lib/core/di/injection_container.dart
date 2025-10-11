@@ -6,6 +6,12 @@ import 'package:shopyo/core/app/upload_image/data_source/upload_image_data_sourc
 import 'package:shopyo/core/app/upload_image/repo/upload_image_repo.dart';
 import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/dio_factory.dart';
+import 'package:shopyo/features/admin/add_categories/data/data_source/categories_admin_data_source.dart';
+import 'package:shopyo/features/admin/add_categories/data/repos/categories_admin_repo.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_category/create_category_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/delete_category/delete_category_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
@@ -20,6 +26,7 @@ Future<void> setupInjector() async {
   await _initCore();
   await _initAuth();
   await _initDashboard();
+  await _initCategoriesAdmin();
 }
 
 Future<void> _initCore() async {
@@ -48,4 +55,14 @@ Future<void> _initDashboard() async {
     ..registerFactory(() => ProductsNumberBloc(sl()))
     ..registerFactory(() => CategoriesNumberBloc(sl()))
     ..registerFactory(() => UsersNumberBloc(sl()));
+}
+
+Future<void> _initCategoriesAdmin() async {
+  sl
+    ..registerLazySingleton(() => CategoriesAdminRepo(sl()))
+    ..registerLazySingleton(() => CategoriesAdminDataSource(sl()))
+    ..registerFactory(() => GetAllAdminCategoriesBloc(sl()))
+    ..registerFactory(() => CreateCategoryBloc(sl()))
+    ..registerFactory(() => DeleteCategoryBloc(sl()))
+    ..registerFactory(() => UpdateCategoryBloc(sl()));
 }

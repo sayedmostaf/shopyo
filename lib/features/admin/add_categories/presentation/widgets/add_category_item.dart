@@ -1,0 +1,101 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
+import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
+import 'package:shopyo/core/common/widgets/text_app.dart';
+import 'package:shopyo/core/di/injection_container.dart';
+import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/style/fonts/font_family_helper.dart';
+import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/widgets/delete/delete_category_widget.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/widgets/update/update_category_bottom_sheet_widget.dart';
+
+class AddCategoryItem extends StatelessWidget {
+  const AddCategoryItem({
+    super.key,
+    required this.name,
+    required this.image,
+    required this.categoryId,
+  });
+  final String name, image, categoryId;
+  @override
+  Widget build(BuildContext context) {
+    return CustomContainerLinearAdmin(
+      height: 130.h,
+      width: MediaQuery.of(context).size.width,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15.w),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Spacer(),
+                TextApp(
+                  text: name,
+                  theme: context.textStyle.copyWith(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeightHelper.bold,
+                    fontFamily: FontFamilyHelper.poppinsEnglish,
+                  ),
+                ),
+                Spacer(),
+                Row(
+                  children: [
+                    DeleteCategoryWidget(categoryId: categoryId),
+                    SizedBox(width: 20.h),
+                    InkWell(
+                      onTap: () {
+                        _updateCategoryBottomSheet(context);
+                      },
+                      child: Icon(Icons.edit, color: Colors.green, size: 25),
+                    ),
+                  ],
+                ),
+                Spacer(),
+              ],
+            ),
+            Flexible(
+              child: CachedNetworkImage(
+                height: 99.h,
+                width: 120.w,
+                imageUrl: image,
+                errorWidget: (context, url, error) =>
+                    const Icon(Icons.error, color: Colors.red, size: 70),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _updateCategoryBottomSheet(BuildContext context) {
+    CustomBottomSheet.showModalBottomSheetContainer(
+      context: context,
+      widget: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => sl<UpdateCategoryBloc>()),
+          BlocProvider(create: (context) => sl<UploadImageCubit>()),
+        ],
+        child: UpdateCategoryBottomSheetWidget(
+          imageUrl: image,
+          categoryName: name,
+          categoryId: categoryId,
+        ),
+      ),
+      whenComplete: () {
+        context.read<GetAllAdminCategoriesBloc>().add(
+          GetAllAdminCategoriesEvent.fetchAdminCategories(isNotLoading: false),
+        );
+      },
+    );
+  }
+}
