@@ -1,0 +1,93 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
+import 'package:shopyo/core/common/widgets/text_app.dart';
+import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/style/fonts/font_family_helper.dart';
+import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+
+class ProductAdminItem extends StatelessWidget {
+  const ProductAdminItem({
+    super.key,
+    required this.imageUrl,
+    required this.title,
+    required this.categoryName,
+    required this.price,
+  });
+  final String imageUrl, title, categoryName, price;
+  @override
+  Widget build(BuildContext context) {
+    return CustomContainerLinearAdmin(
+      height: 250.h,
+      width: 165.w,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                child: Icon(Icons.delete, color: Colors.red, size: 25),
+              ),
+              IconButton(
+                padding: EdgeInsets.zero,
+                onPressed: () {},
+                icon: Icon(Icons.edit, color: Colors.green),
+              ),
+            ],
+          ),
+          Flexible(
+            child: Center(
+              child: CachedNetworkImage(
+                imageUrl: imageUrl,
+                height: 200.h,
+                width: 120.w,
+                errorWidget: (context, url, error) =>
+                    Icon(Icons.error, color: Colors.red, size: 70),
+              ),
+            ),
+          ),
+          SizedBox(height: 10.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: TextApp(
+              text: title,
+              theme: context.textStyle.copyWith(
+                fontSize: 14.sp,
+                fontWeight: FontWeightHelper.bold,
+                fontFamily: FontFamilyHelper.poppinsEnglish,
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 5.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: TextApp(
+              text: categoryName,
+              theme: context.textStyle.copyWith(
+                fontSize: 13.sp,
+                fontWeight: FontWeightHelper.medium,
+              ),
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(height: 5.h),
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10.w),
+            child: TextApp(
+              text: '\$ $price',
+              theme: context.textStyle.copyWith(
+                fontSize: 13.sp,
+                fontWeight: FontWeightHelper.medium,
+              ),
+            ),
+          ),
+          SizedBox(height: 10.h),
+        ],
+      ),
+    );
+  }
+}

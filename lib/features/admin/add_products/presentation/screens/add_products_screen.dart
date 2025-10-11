@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/add_products/refactors/add_products_body.dart';
 
 class AddProductsScreen extends StatelessWidget {
   const AddProductsScreen({super.key});
@@ -14,12 +15,7 @@ class AddProductsScreen extends StatelessWidget {
         isMain: true,
         backgroundColor: ColorsDark.mainColor,
       ),
-      body: Center(
-        child: Text(
-          'Products Screen',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-      ),
+      body: AddProductsBody(),
     );
   }
 }
