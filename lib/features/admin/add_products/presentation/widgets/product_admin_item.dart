@@ -5,6 +5,7 @@ import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
@@ -48,7 +49,7 @@ class ProductAdminItem extends StatelessWidget {
           Flexible(
             child: Center(
               child: CachedNetworkImage(
-                imageUrl: imageUrl,
+                imageUrl: imageUrl.imageProductFormate(),
                 height: 200.h,
                 width: 120.w,
                 errorWidget: (context, url, error) =>
