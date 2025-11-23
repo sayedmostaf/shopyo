@@ -8,29 +8,28 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
-import 'package:shopyo/features/admin/add_products/widgets/update/update_product_images.dart';
+import 'package:shopyo/features/admin/add_products/presentation/widgets/create/create_product_images.dart';
 
-class UpdateProductBottomSheet extends StatefulWidget {
-  const UpdateProductBottomSheet({super.key});
+class CreateProductBottomSheet extends StatefulWidget {
+  const CreateProductBottomSheet({super.key});
 
   @override
-  State<UpdateProductBottomSheet> createState() =>
-      _UpdateProductBottomSheetState();
+  State<CreateProductBottomSheet> createState() =>
+      _CreateProductBottomSheetState();
 }
 
-class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
+class _CreateProductBottomSheetState extends State<CreateProductBottomSheet> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-
-  final fromKey = GlobalKey<FormState>();
-
+  final formKey = GlobalKey<FormState>();
   String? categoryName;
   @override
   void dispose() {
     _titleController.dispose();
     _priceController.dispose();
     _descriptionController.dispose();
+
     super.dispose();
   }
 
@@ -39,14 +38,14 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
     return SizedBox(
       height: 600.h,
       child: Form(
-        key: fromKey,
+        key: formKey,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Center(
                 child: TextApp(
-                  text: 'Update Product',
+                  text: 'Create Product',
                   theme: context.textStyle.copyWith(
                     fontSize: 20.sp,
                     fontWeight: FontWeightHelper.bold,
@@ -56,7 +55,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
               ),
               SizedBox(height: 20.h),
               TextApp(
-                text: 'Update a photos',
+                text: 'Create a photos',
                 theme: context.textStyle.copyWith(
                   fontSize: 16.sp,
                   fontWeight: FontWeightHelper.medium,
@@ -64,7 +63,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 ),
               ),
               SizedBox(height: 15.h),
-              const UpdateProductImages(),
+              CreateProductImages(),
               SizedBox(height: 15.h),
               TextApp(
                 text: 'Title',
@@ -96,7 +95,6 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 ),
               ),
               SizedBox(height: 15.h),
-              // Price
               CustomTextField(
                 controller: _priceController,
                 keyboardType: TextInputType.number,
@@ -118,12 +116,11 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 ),
               ),
               SizedBox(height: 15.h),
-              //Description
               CustomTextField(
                 controller: _descriptionController,
-                maxLines: 4,
                 keyboardType: TextInputType.multiline,
                 hintText: 'Description',
+                maxLines: 4,
                 validator: (value) {
                   if (value == null || value.isEmpty || value.length < 2) {
                     return 'Enter a valid description';
@@ -142,7 +139,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
               ),
               SizedBox(height: 15.h),
               CustomCreateDropDown(
-                hintText: 'mackbook',
+                hintText: 'Select a Category',
                 items: [],
                 onChanged: (value) {
                   setState(() {
@@ -152,13 +149,14 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 value: categoryName,
               ),
               SizedBox(height: 15.h),
+              SizedBox(height: 15.h),
               CustomButton(
                 onPressed: () {},
                 backgroundColor: ColorsDark.white,
                 lastRadius: 20,
                 threeRadius: 20,
                 textColor: ColorsDark.blueDark,
-                text: 'Update Product',
+                text: 'Create Product',
                 width: MediaQuery.of(context).size.width,
                 height: 50.h,
               ),

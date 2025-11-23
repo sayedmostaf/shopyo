@@ -1,0 +1,14 @@
+import 'package:shopyo/core/service/graphql/api_service.dart';
+import 'package:shopyo/core/service/graphql/qraphql_queries/admin/products_queries.dart';
+import 'package:shopyo/features/admin/add_products/data/models/get_all_product_response.dart';
+
+class ProductsAdminDataSource {
+  final ApiService _graphql;
+  ProductsAdminDataSource(this._graphql);
+  Future<GetAllProductResponse> getAllProductsAdmin() async {
+    final response = await _graphql.getAllProducts(
+      ProductsQueries().getAllProductsQuery(),
+    );
+    return response;
+  }
+}

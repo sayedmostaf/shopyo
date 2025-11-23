@@ -7,7 +7,7 @@ import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
-import 'package:shopyo/features/admin/add_products/widgets/update/update_product_bottom_sheet.dart';
+import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
