@@ -12,6 +12,10 @@ import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_c
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/delete_category/delete_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
+import 'package:shopyo/features/admin/add_products/data/data_source/products_admin_data_source.dart';
+import 'package:shopyo/features/admin/add_products/data/repos/products_admin_repo.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/create_product/create_product_bloc.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/get_all_admin_product/get_all_admin_product_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
@@ -27,6 +31,7 @@ Future<void> setupInjector() async {
   await _initAuth();
   await _initDashboard();
   await _initCategoriesAdmin();
+  await _initProductsAdmin();
 }
 
 Future<void> _initCore() async {
@@ -65,4 +70,12 @@ Future<void> _initCategoriesAdmin() async {
     ..registerFactory(() => CreateCategoryBloc(sl()))
     ..registerFactory(() => DeleteCategoryBloc(sl()))
     ..registerFactory(() => UpdateCategoryBloc(sl()));
+}
+
+Future<void> _initProductsAdmin() async {
+  sl
+    ..registerLazySingleton(() => ProductsAdminRepo(sl()))
+    ..registerLazySingleton(() => ProductsAdminDataSource(sl()))
+    ..registerFactory(() => GetAllAdminProductBloc(sl()));
+  // ..registerFactory(() => CreateProductBloc(sl()));
 }
