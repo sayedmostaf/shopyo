@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_products/widgets/create/create_product_bottom_sheet.dart';
 
 class CreateProduct extends StatelessWidget {
   const CreateProduct({super.key});
@@ -25,7 +27,10 @@ class CreateProduct extends StatelessWidget {
         ),
         CustomButton(
           onPressed: () {
-            // TODO: create bottom sheet to create product
+            CustomBottomSheet.showModalBottomSheetContainer(
+              context: context,
+              widget: CreateProductBottomSheet(),
+            );
           },
           text: 'Add',
           width: 90.w,

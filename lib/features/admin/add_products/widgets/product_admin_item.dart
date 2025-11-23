@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_products/widgets/update/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
   const ProductAdminItem({
@@ -33,7 +35,12 @@ class ProductAdminItem extends StatelessWidget {
               ),
               IconButton(
                 padding: EdgeInsets.zero,
-                onPressed: () {},
+                onPressed: () {
+                  CustomBottomSheet.showModalBottomSheetContainer(
+                    context: context,
+                    widget: UpdateProductBottomSheet(),
+                  );
+                },
                 icon: Icon(Icons.edit, color: Colors.green),
               ),
             ],
