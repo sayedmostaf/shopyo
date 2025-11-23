@@ -1,3 +1,5 @@
+import 'package:shopyo/features/admin/add_products/data/models/create_product_request_body.dart';
+
 class ProductsQueries {
   factory ProductsQueries() {
     return _instance;
@@ -21,6 +23,35 @@ class ProductsQueries {
             }
           }
       ''',
+    };
+  }
+
+  Map<String, dynamic> createProductMap({
+    required CreateProductRequestBody body,
+  }) {
+    return {
+      'query': r'''
+          mutation CreateProduct($title: String!, $price: Float!, $description:String!, $categoryId: Float!,$imagesList:[Strin!]!  ) {
+              addProduct(
+                data: {
+                  title: $title,
+                  price: $price
+                  description: $description
+                  categoryId: $categoryId
+                  images: $imagesList
+                }
+              ) {
+                title
+              }
+            }
+        ''',
+      'variables': {
+        'title': body.title,
+        'price': body.price,
+        'description': body.description,
+        'categoryId': body.categoryId,
+        'imagesList': body.imageList,
+      },
     };
   }
 }
