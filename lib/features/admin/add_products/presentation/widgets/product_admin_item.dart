@@ -8,6 +8,7 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_products/presentation/widgets/delete/delete_product_widget.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
 
 class ProductAdminItem extends StatelessWidget {
@@ -16,9 +17,10 @@ class ProductAdminItem extends StatelessWidget {
     required this.imageUrl,
     required this.title,
     required this.categoryName,
+    required this.productId,
     required this.price,
   });
-  final String imageUrl, title, categoryName, price;
+  final String imageUrl, title, categoryName, price, productId;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -30,10 +32,7 @@ class ProductAdminItem extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.w),
-                child: Icon(Icons.delete, color: Colors.red, size: 25),
-              ),
+              DeleteProductWidget(productId: productId),
               IconButton(
                 padding: EdgeInsets.zero,
                 onPressed: () {
