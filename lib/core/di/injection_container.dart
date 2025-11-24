@@ -17,6 +17,7 @@ import 'package:shopyo/features/admin/add_products/data/repos/products_admin_rep
 import 'package:shopyo/features/admin/add_products/presentation/blocs/create_product/create_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/delete_product/delete_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/get_all_admin_product/get_all_admin_product_bloc.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/update_product/update_product_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/data/data_source/dashboard_data_source.dart';
 import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
@@ -79,5 +80,6 @@ Future<void> _initProductsAdmin() async {
     ..registerLazySingleton(() => ProductsAdminDataSource(sl()))
     ..registerFactory(() => GetAllAdminProductBloc(sl()))
     ..registerFactory(() => CreateProductBloc(sl()))
-    ..registerFactory(() => DeleteProductBloc(sl()));
+    ..registerFactory(() => DeleteProductBloc(sl()))
+    ..registerFactory(() => UpdateProductBloc(sl()));
 }
