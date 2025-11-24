@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
@@ -35,6 +36,7 @@ class CreateProduct extends StatelessWidget {
               widget: MultiBlocProvider(
                 providers: [
                   BlocProvider(create: (context) => sl<CreateProductBloc>()),
+                  BlocProvider(create: (context) => sl<UploadImageCubit>()),
                 ],
                 child: CreateProductBottomSheet(),
               ),
