@@ -31,7 +31,7 @@ class ProductsQueries {
   }) {
     return {
       'query': r'''
-          mutation CreateProduct($title: String!, $price: Float!, $description:String!, $categoryId: Float!,$imagesList:[Strin!]!  ) {
+          mutation CreateProduct($title: String!, $price: Float!, $description:String!, $categoryId: Float!,$imagesList:[String!]!  ) {
               addProduct(
                 data: {
                   title: $title,

@@ -10,7 +10,9 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/create_product/create_product_bloc.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/get_all_admin_product/get_all_admin_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/create/create_product_bottom_sheet.dart';
 
 class CreateProduct extends StatelessWidget {
@@ -37,9 +39,22 @@ class CreateProduct extends StatelessWidget {
                 providers: [
                   BlocProvider(create: (context) => sl<CreateProductBloc>()),
                   BlocProvider(create: (context) => sl<UploadImageCubit>()),
+                  BlocProvider(
+                    create: (context) => sl<GetAllAdminCategoriesBloc>()
+                      ..add(
+                        GetAllAdminCategoriesEvent.fetchAdminCategories(
+                          isNotLoading: false,
+                        ),
+                      ),
+                  ),
                 ],
                 child: CreateProductBottomSheet(),
               ),
+              whenComplete: () {
+                context.read<GetAllAdminProductBloc>().add(
+                  GetAllAdminProductEvent.getAllProducts(isNotLoading: false),
+                );
+              },
             );
           },
           text: 'Add',
