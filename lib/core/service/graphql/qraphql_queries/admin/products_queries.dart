@@ -54,4 +54,15 @@ class ProductsQueries {
       },
     };
   }
+
+  Map<String, dynamic> deleteMapQuery({required String productId}) {
+    return {
+      'query': r'''
+            mutation DeleteCategory($productId: ID!) {
+              deleteProduct(id: $productId)
+            }
+      ''',
+      'variables': {'productId': productId},
+    };
+  }
 }

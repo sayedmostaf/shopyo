@@ -15,9 +15,21 @@ class ProductsAdminRepo {
       return ApiResult.failure(errorMessage);
     }
   }
-  Future<ApiResult<void>> createProductsAdmin({required CreateProductRequestBody body}) async {
+
+  Future<ApiResult<void>> createProductsAdmin({
+    required CreateProductRequestBody body,
+  }) async {
     try {
       final response = await _dataSource.createProductsAdmin(body: body);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(errorMessage);
+    }
+  }
+
+  Future<ApiResult<void>> deleteProducts({required String productId}) async {
+    try {
+      final response = await _dataSource.deleteProducts(productId: productId);
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.failure(errorMessage);

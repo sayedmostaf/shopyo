@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/delete_product/delete_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/get_all_admin_product/get_all_admin_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/refactors/add_products_body.dart';
 
@@ -17,6 +18,7 @@ class AddProductsScreen extends StatelessWidget {
           create: (context) => sl<GetAllAdminProductBloc>()
             ..add(GetAllAdminProductEvent.getAllProducts(isNotLoading: true)),
         ),
+        BlocProvider(create: (context) => sl<DeleteProductBloc>()),
       ],
       child: Scaffold(
         backgroundColor: ColorsDark.mainColor,
