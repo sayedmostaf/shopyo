@@ -11,6 +11,8 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/get_all_admin_product/get_all_admin_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/update_product/update_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/delete/delete_product_widget.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_bottom_sheet.dart';
@@ -24,9 +26,17 @@ class ProductAdminItem extends StatelessWidget {
     required this.productId,
     required this.price,
     required this.imageList,
+    required this.description,
+    required this.categoryId,
   });
   final List<String> imageList;
-  final String imageUrl, title, categoryName, price, productId;
+  final String categoryId,
+      description,
+      imageUrl,
+      title,
+      categoryName,
+      price,
+      productId;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -52,9 +62,32 @@ class ProductAdminItem extends StatelessWidget {
                         BlocProvider(
                           create: (context) => sl<UploadImageCubit>(),
                         ),
+                        BlocProvider(
+                          create: (context) =>
+                              sl<GetAllAdminCategoriesBloc>()..add(
+                                GetAllAdminCategoriesEvent.fetchAdminCategories(
+                                  isNotLoading: false,
+                                ),
+                              ),
+                        ),
                       ],
-                      child: UpdateProductBottomSheet(imageList: imageList),
+                      child: UpdateProductBottomSheet(
+                        imageList: imageList,
+                        categoryName: categoryName,
+                        description: description,
+                        price: price,
+                        productId: productId,
+                        title: title,
+                        categoryId: categoryId,
+                      ),
                     ),
+                    whenComplete: () {
+                      context.read<GetAllAdminProductBloc>().add(
+                        GetAllAdminProductEvent.getAllProducts(
+                          isNotLoading: false,
+                        ),
+                      );
+                    },
                   );
                 },
                 icon: Icon(Icons.edit, color: Colors.green),

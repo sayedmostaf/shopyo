@@ -80,6 +80,10 @@ class AddProductsBody extends StatelessWidget {
                                       price: list[index].price!.toString(),
                                       title: list[index].title ?? '',
                                       imageList: list[index].images ?? [],
+                                      description:
+                                          list[index].description ?? '',
+                                      categoryId:
+                                          list[index].category!.id ?? '',
                                     );
                                   },
                                 );

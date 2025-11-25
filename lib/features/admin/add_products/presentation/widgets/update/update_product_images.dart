@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/toast/show_toast.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/language/lang_keys.dart';
-import 'package:shopyo/core/utils/app_strings.dart';
 
 class UpdateProductImages extends StatelessWidget {
   const UpdateProductImages({super.key, required this.imageList});
@@ -98,7 +98,7 @@ class UpdateSelectedImageWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(15),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: NetworkImage(imageList[index]),
+                image: NetworkImage(imageList[index].imageProductFormate()),
               ),
             ),
           ),

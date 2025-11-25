@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/common/toast/show_toast.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/common/widgets/custom_drop_down.dart';
 import 'package:shopyo/core/common/widgets/custom_text_field.dart';
@@ -8,11 +10,23 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
+import 'package:shopyo/features/admin/add_products/presentation/blocs/update_product/update_product_bloc.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_images.dart';
 
 class UpdateProductBottomSheet extends StatefulWidget {
-  const UpdateProductBottomSheet({super.key, required this.imageList});
+  const UpdateProductBottomSheet({
+    super.key,
+    required this.imageList,
+    required this.categoryName,
+    required this.description,
+    required this.price,
+    required this.productId,
+    required this.title,
+    required this.categoryId,
+  });
   final List<String> imageList;
+  final String categoryId, categoryName, description, price, productId, title;
 
   @override
   State<UpdateProductBottomSheet> createState() =>
@@ -26,7 +40,17 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
 
   final fromKey = GlobalKey<FormState>();
 
-  String? categoryName;
+  String? categoryValueName, categoryValueId;
+  @override
+  void initState() {
+    super.initState();
+    categoryValueName = widget.categoryName;
+    categoryValueId = widget.categoryId;
+    _titleController.text = widget.title;
+    _priceController.text = widget.price;
+    _descriptionController.text = widget.description;
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -142,26 +166,89 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 ),
               ),
               SizedBox(height: 15.h),
-              CustomCreateDropDown(
-                hintText: 'mackbook',
-                items: [],
-                onChanged: (value) {
-                  setState(() {
-                    categoryName = value;
-                  });
+              BlocBuilder<
+                GetAllAdminCategoriesBloc,
+                GetAllAdminCategoriesState
+              >(
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    success: (category) {
+                      return CustomCreateDropDown(
+                        hintText: '',
+                        items: category.categoryDropdownList,
+                        onChanged: (value) {
+                          setState(() {
+                            categoryValueName = value;
+                            final categoryIdString = category
+                                .getAllCategoriesList
+                                .firstWhere((e) => e.name == value)
+                                .id!;
+                            categoryValueId = categoryIdString;
+                          });
+                        },
+                        value: categoryValueName,
+                      );
+                    },
+                    orElse: () {
+                      return CustomCreateDropDown(
+                        hintText: '',
+                        items: const [''],
+                        onChanged: (value) {},
+                        value: '',
+                      );
+                    },
+                  );
                 },
-                value: categoryName,
               ),
               SizedBox(height: 15.h),
-              CustomButton(
-                onPressed: () {},
-                backgroundColor: ColorsDark.white,
-                lastRadius: 20,
-                threeRadius: 20,
-                textColor: ColorsDark.blueDark,
-                text: 'Update Product',
-                width: MediaQuery.of(context).size.width,
-                height: 50.h,
+              BlocConsumer<UpdateProductBloc, UpdateProductState>(
+                listener: (context, state) {
+                  state.whenOrNull(
+                    success: () {
+                      context.pop();
+                      ShowToast.showToastSuccessTop(
+                        message: '${_titleController.text} Update Success',
+                        seconds: 2,
+                      );
+                    },
+                    error: (error) {
+                      ShowToast.showToastErrorTop(message: error);
+                    },
+                  );
+                },
+                builder: (context, state) {
+                  return state.maybeWhen(
+                    loading: () {
+                      return Container(
+                        height: 50.h,
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: const Center(
+                          child: CircularProgressIndicator(
+                            color: ColorsDark.blueDark,
+                          ),
+                        ),
+                      );
+                    },
+                    orElse: () {
+                      return CustomButton(
+                        onPressed: () {
+                          _validateUpdateProduct(context);
+                        },
+                        backgroundColor: ColorsDark.white,
+                        lastRadius: 20,
+                        threeRadius: 20,
+                        textColor: ColorsDark.blueDark,
+                        text: 'Update Product',
+                        width: MediaQuery.of(context).size.width,
+                        height: 50.h,
+                      );
+                    },
+                  );
+                },
               ),
               SizedBox(height: 20.h),
             ],
@@ -169,5 +256,9 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
         ),
       ),
     );
+  }
+
+  void _validateUpdateProduct(BuildContext context) {
+    print("updated => ${double.parse(categoryValueId!)}");
   }
 }
