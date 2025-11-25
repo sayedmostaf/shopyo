@@ -25,6 +25,7 @@ import 'package:shopyo/features/admin/dashboard/presentation/blocs/products_numb
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/users_number/users_number_bloc.dart';
 import 'package:shopyo/features/admin/users/data/data_source/users_data_source.dart';
 import 'package:shopyo/features/admin/users/data/repos/users_repo.dart';
+import 'package:shopyo/features/admin/users/presentation/blocs/delete_user/delete_user_bloc.dart';
 import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get_all_users_bloc.dart';
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
@@ -92,5 +93,6 @@ Future<void> _initUsersAdmin() async {
   sl
     ..registerLazySingleton(() => UsersRepo(sl()))
     ..registerLazySingleton(() => UsersDataSource(sl()))
-    ..registerFactory(() => GetAllUsersBloc(sl()));
+    ..registerFactory(() => GetAllUsersBloc(sl()))
+    ..registerFactory(() => DeleteUserBloc(sl()));
 }

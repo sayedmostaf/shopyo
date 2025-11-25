@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/users/presentation/blocs/delete_user/delete_user_bloc.dart';
 import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get_all_users_bloc.dart';
 import 'package:shopyo/features/admin/users/presentation/refactors/users_body.dart';
 
@@ -18,6 +19,7 @@ class UsersScreen extends StatelessWidget {
               sl<GetAllUsersBloc>()
                 ..add(const GetAllUsersEvent.getAllUsers(isNotLoading: true)),
         ),
+        BlocProvider(create: (context) => sl<DeleteUserBloc>()),
       ],
       child: const Scaffold(
         backgroundColor: ColorsDark.mainColor,

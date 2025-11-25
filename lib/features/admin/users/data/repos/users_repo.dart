@@ -14,4 +14,12 @@ class UsersRepo {
       return ApiResult.failure(errorMessage);
     }
   }
+  Future<ApiResult<void>> deleteUser({required String userId}) async {
+    try {
+      final response = await _dataSource.deleteUser(userId: userId);
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.failure(errorMessage);
+    }
+  }
 }

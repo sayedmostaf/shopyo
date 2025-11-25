@@ -11,4 +11,11 @@ class UsersDataSource {
     );
     return response;
   }
+
+  Future<void> deleteUser({required String userId}) async {
+    final response = await _graphql.deleteUser(
+      UsersQueries().deleteUserMapQuery(userId: userId),
+    );
+    return response;
+  }
 }

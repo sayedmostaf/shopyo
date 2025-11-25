@@ -6,6 +6,7 @@ import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/users/data/models/get_all_users_response.dart';
+import 'package:shopyo/features/admin/users/presentation/widgets/delete_user_icon.dart';
 import 'package:shopyo/features/admin/users/presentation/widgets/table_cell_title_widget.dart';
 
 class TableForUsers extends StatelessWidget {
@@ -83,7 +84,7 @@ class TableForUsers extends StatelessWidget {
               ),
               TableCell(
                 verticalAlignment: TableCellVerticalAlignment.middle,
-                child: Icon(Icons.delete, color: Colors.red, size: 25),
+                child: DeleteUserIcon(userId: userList[index].id ?? ""),
               ),
             ],
           ),
