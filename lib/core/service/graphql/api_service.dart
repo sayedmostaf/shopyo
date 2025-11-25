@@ -3,6 +3,7 @@ import 'package:retrofit/retrofit.dart';
 import 'package:shopyo/core/app/upload_image/model/upload_image_response.dart';
 import 'package:shopyo/features/admin/add_categories/data/models/create_category_response.dart';
 import 'package:shopyo/features/admin/add_categories/data/models/get_all_categories_response.dart';
+import 'package:shopyo/features/admin/add_products/data/models/get_all_product_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/categories_number_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/products_number_response.dart';
 import 'package:shopyo/features/admin/dashboard/data/models/users_number_response.dart';
@@ -52,4 +53,15 @@ abstract class ApiService {
   Future<void> deleteCategory(@Body() Map<String, dynamic> mutation);
   @POST(graphql)
   Future<void> updateCategory(@Body() Map<String, dynamic> mutation);
+  @POST(graphql)
+  Future<GetAllProductResponse> getAllProducts(
+    @Body() Map<String, dynamic> query,
+  );
+  @POST(graphql)
+  Future<void> createProduct(@Body() Map<String, dynamic> mutation);
+  @POST(graphql)
+  Future<void> deleteProduct(@Body() Map<String, dynamic> mutation);
+  @POST(graphql)
+  Future<void> updateProduct(@Body() Map<String, dynamic> mutation);
+
 }
