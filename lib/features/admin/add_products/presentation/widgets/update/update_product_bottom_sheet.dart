@@ -11,7 +11,8 @@ import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/add_products/presentation/widgets/update/update_product_images.dart';
 
 class UpdateProductBottomSheet extends StatefulWidget {
-  const UpdateProductBottomSheet({super.key});
+  const UpdateProductBottomSheet({super.key, required this.imageList});
+  final List<String> imageList;
 
   @override
   State<UpdateProductBottomSheet> createState() =>
@@ -64,7 +65,7 @@ class _UpdateProductBottomSheetState extends State<UpdateProductBottomSheet> {
                 ),
               ),
               SizedBox(height: 15.h),
-              const UpdateProductImages(),
+              UpdateProductImages(imageList: widget.imageList),
               SizedBox(height: 15.h),
               TextApp(
                 text: 'Title',

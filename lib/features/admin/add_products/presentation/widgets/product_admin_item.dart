@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
 import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
@@ -22,7 +23,9 @@ class ProductAdminItem extends StatelessWidget {
     required this.categoryName,
     required this.productId,
     required this.price,
+    required this.imageList,
   });
+  final List<String> imageList;
   final String imageUrl, title, categoryName, price, productId;
   @override
   Widget build(BuildContext context) {
@@ -46,8 +49,11 @@ class ProductAdminItem extends StatelessWidget {
                         BlocProvider(
                           create: (context) => sl<UpdateProductBloc>(),
                         ),
+                        BlocProvider(
+                          create: (context) => sl<UploadImageCubit>(),
+                        ),
                       ],
-                      child: UpdateProductBottomSheet(),
+                      child: UpdateProductBottomSheet(imageList: imageList),
                     ),
                   );
                 },
