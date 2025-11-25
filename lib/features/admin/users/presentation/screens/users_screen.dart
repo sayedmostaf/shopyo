@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
+import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get_all_users_bloc.dart';
 import 'package:shopyo/features/admin/users/presentation/refactors/users_body.dart';
 
 class UsersScreen extends StatelessWidget {
@@ -8,14 +11,23 @@ class UsersScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: ColorsDark.mainColor,
-      appBar: AdminAppBar(
-        isMain: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              sl<GetAllUsersBloc>()
+                ..add(const GetAllUsersEvent.getAllUsers(isNotLoading: true)),
+        ),
+      ],
+      child: const Scaffold(
         backgroundColor: ColorsDark.mainColor,
-        title: 'Users',
+        appBar: AdminAppBar(
+          title: 'Users',
+          isMain: true,
+          backgroundColor: ColorsDark.mainColor,
+        ),
+        body: UsersBody(),
       ),
-      body: UsersBody(),
     );
   }
 }

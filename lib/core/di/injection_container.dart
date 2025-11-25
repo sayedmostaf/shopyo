@@ -23,6 +23,9 @@ import 'package:shopyo/features/admin/dashboard/data/repos/dashboard_repo.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/categories_number/categories_number_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/products_number/products_number_bloc.dart';
 import 'package:shopyo/features/admin/dashboard/presentation/blocs/users_number/users_number_bloc.dart';
+import 'package:shopyo/features/admin/users/data/data_source/users_data_source.dart';
+import 'package:shopyo/features/admin/users/data/repos/users_repo.dart';
+import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get_all_users_bloc.dart';
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
@@ -34,6 +37,7 @@ Future<void> setupInjector() async {
   await _initDashboard();
   await _initCategoriesAdmin();
   await _initProductsAdmin();
+  await _initUsersAdmin();
 }
 
 Future<void> _initCore() async {
@@ -82,4 +86,11 @@ Future<void> _initProductsAdmin() async {
     ..registerFactory(() => CreateProductBloc(sl()))
     ..registerFactory(() => DeleteProductBloc(sl()))
     ..registerFactory(() => UpdateProductBloc(sl()));
+}
+
+Future<void> _initUsersAdmin() async {
+  sl
+    ..registerLazySingleton(() => UsersRepo(sl()))
+    ..registerLazySingleton(() => UsersDataSource(sl()))
+    ..registerFactory(() => GetAllUsersBloc(sl()));
 }

@@ -5,10 +5,12 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/users/data/models/get_all_users_response.dart';
 import 'package:shopyo/features/admin/users/presentation/widgets/table_cell_title_widget.dart';
 
 class TableForUsers extends StatelessWidget {
-  const TableForUsers({super.key});
+  const TableForUsers({super.key, required this.userList});
+  final List<UsersModel> userList;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class TableForUsers extends StatelessWidget {
           ],
         ),
         ...List.generate(
-          4,
+          userList.length,
           (index) => TableRow(
             children: [
               TableCell(
@@ -56,7 +58,7 @@ class TableForUsers extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextApp(
-                    text: 'sayed',
+                    text: userList[index].name ?? '',
                     theme: context.textStyle.copyWith(
                       fontSize: 12.sp,
                       fontWeight: FontWeightHelper.medium,
@@ -70,7 +72,7 @@ class TableForUsers extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: TextApp(
-                    text: 'sayed.mostafa.wrk@gmail.com',
+                    text: userList[index].email ?? '',
                     theme: context.textStyle.copyWith(
                       fontSize: 12.sp,
                       fontWeight: FontWeightHelper.medium,
