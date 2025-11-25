@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
+import 'package:shopyo/features/admin/users/presentation/refactors/users_body.dart';
 
 class UsersScreen extends StatelessWidget {
   const UsersScreen({super.key});
@@ -14,12 +15,7 @@ class UsersScreen extends StatelessWidget {
         backgroundColor: ColorsDark.mainColor,
         title: 'Users',
       ),
-      body: Center(
-        child: Text(
-          'Users Screen',
-          style: TextStyle(color: Colors.white, fontSize: 20),
-        ),
-      ),
+      body: UsersBody(),
     );
   }
 }
