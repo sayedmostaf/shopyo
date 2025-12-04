@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:retrofit/http.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/widgets/edit/edit_notification.dart';
 
 class AddNotificationItem extends StatelessWidget {
   const AddNotificationItem({super.key});
@@ -32,7 +32,7 @@ class AddNotificationItem extends StatelessWidget {
               children: [
                 Icon(Icons.delete, color: Colors.red),
                 SizedBox(width: 40.w),
-                Icon(Icons.edit, color: Colors.yellow),
+                EditNotification(),
                 SizedBox(width: 40.w),
                 Icon(Icons.send, color: Colors.green),
               ],
