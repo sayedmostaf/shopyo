@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/common/widgets/admin_app_bar.dart';
+import 'package:shopyo/core/service/push_notification/firebase_cloud_messaging.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 
 class AddNotificationsScreen extends StatelessWidget {
@@ -7,7 +8,7 @@ class AddNotificationsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: ColorsDark.mainColor,
       appBar: AdminAppBar(
         title: 'Notifications',
@@ -15,9 +16,14 @@ class AddNotificationsScreen extends StatelessWidget {
         backgroundColor: ColorsDark.mainColor,
       ),
       body: Center(
-        child: Text(
-          'Notifications Screen',
-          style: TextStyle(color: Colors.white, fontSize: 20),
+        child: InkWell(
+          onTap: () async {
+            await FirebaseCloudMessaging.instance.sendTopicNotification();
+          },
+          child: Text(
+            'Notifications Screen',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
         ),
       ),
     );
