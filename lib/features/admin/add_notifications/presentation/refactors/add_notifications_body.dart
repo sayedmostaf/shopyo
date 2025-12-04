@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/widgets/add_notification_item.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/create/create_notification.dart';
 
 class AddNotificationsBody extends StatelessWidget {
@@ -9,7 +10,30 @@ class AddNotificationsBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
-      child: Column(children: [CreateNotification()]),
+      child: Column(
+        children: [
+          CreateNotification(),
+          Expanded(
+            child: CustomScrollView(
+              slivers: [
+                SliverToBoxAdapter(child: SizedBox(height: 20.h)),
+                SliverToBoxAdapter(
+                  child: ListView.separated(
+                    itemBuilder: (context, index) {
+                      return AddNotificationItem();
+                    },
+                    separatorBuilder: (context, index) =>
+                        SizedBox(height: 15.h),
+                    itemCount: 3,
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
