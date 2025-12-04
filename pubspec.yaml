@@ -1,6 +1,6 @@
 name: shopyo
 description: "A new Flutter project."
-publish_to: 'none'
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -54,12 +54,12 @@ flutter_icons:
   adaptive_icon_foreground: "assets/images/icons/play_store_512.png"
 
 flutter:
-
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
   assets:
     - .env.dev
     - .env.prod
+    - service-account.json
     - assets/images/core/
     - lang/ar.json
     - lang/en.json
@@ -86,5 +86,4 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
-
 ## dart run build_runner build --delete-conflicting-outputs
