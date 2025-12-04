@@ -51,12 +51,17 @@ class ShopyoStoreApp extends StatelessWidget {
                         onTap: () {
                           FocusManager.instance.primaryFocus?.unfocus();
                         },
-                        child: Scaffold(
-                          body: Builder(
-                            builder: (context) {
-                              ConnectivityController.instance.init();
-                              return widget!;
-                            },
+                        child: GestureDetector(
+                          onTap: () {
+                            FocusManager.instance.primaryFocus?.unfocus();
+                          },
+                          child: Scaffold(
+                            body: Builder(
+                              builder: (context) {
+                                ConnectivityController.instance.init();
+                                return widget!;
+                              },
+                            ),
                           ),
                         ),
                       );
