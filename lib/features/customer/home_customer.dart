@@ -15,27 +15,33 @@ class HomeCustomerScreen extends StatelessWidget {
         title: Text('Home Customer', style: TextStyle(color: Colors.white)),
       ),
       body: Center(
-        child: Column(
-          children: [
-            TextButton(
-              onPressed: () async {
-                await FirebaseCloudMessaging.instance.subscribeNotification();
-              },
-              child: Text(
-                'Subscribe Notification',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-            TextButton(
-              onPressed: () async {
-                await FirebaseCloudMessaging.instance.unsubscribeNotification();
-              },
-              child: Text(
-                'Unsubscribe',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-          ],
+        child: ValueListenableBuilder(
+          valueListenable:
+              FirebaseCloudMessaging.instance.isNotificationSubscribed,
+          builder: (_, value, __) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  value ? 'Subscribe' : 'Unsubscribe',
+                  style: TextStyle(fontSize: 24, color: Colors.white),
+                ),
+                const SizedBox(width: 20),
+                Transform.scale(
+                  scale: 1.4,
+                  child: Switch.adaptive(
+                    value: value,
+                    activeColor: Colors.green,
+                    inactiveTrackColor: Color(0xff262626),
+                    onChanged: (value) async {
+                      await FirebaseCloudMessaging.instance
+                          .controllerForUserSubscribe();
+                    },
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

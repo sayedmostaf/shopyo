@@ -9,13 +9,44 @@ import 'package:shopyo/core/app/env.variables.dart';
 class FirebaseCloudMessaging {
   FirebaseCloudMessaging._();
   static const String subscribeKey = 'shopyo-store';
+  ValueNotifier<bool> isNotificationSubscribed = ValueNotifier<bool>(true);
+  bool isPermissionNotification = false;
+  final _firebaseMessaging = FirebaseMessaging.instance;
+  Future<void> init() async {
+    await _permissionNotification();
+  }
 
-  Future<void> subscribeNotification() async {
+  Future<void> controllerForUserSubscribe() async {
+    if (isPermissionNotification == false) {
+      await _permissionNotification();
+    } else {
+      if (isNotificationSubscribed.value == false) {
+        await _subscribeNotification();
+      } else {
+        await _unSubscribeNotification();
+      }
+    }
+  }
+
+  Future<void> _permissionNotification() async {
+    final settings = await _firebaseMessaging.requestPermission(badge: false);
+    if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+      isPermissionNotification = true;
+      await _subscribeNotification();
+    } else {
+      isPermissionNotification = false;
+      isNotificationSubscribed.value = false;
+    }
+  }
+
+  Future<void> _subscribeNotification() async {
+    isNotificationSubscribed.value = true;
     await FirebaseMessaging.instance.subscribeToTopic(subscribeKey);
     debugPrint('Subscribed to topic: $subscribeKey');
   }
 
-  Future<void> unsubscribeNotification() async {
+  Future<void> _unSubscribeNotification() async {
+    isNotificationSubscribed.value = false;
     await FirebaseMessaging.instance.unsubscribeFromTopic(subscribeKey);
     debugPrint('Unsubscribed from topic: $subscribeKey');
   }

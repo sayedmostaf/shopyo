@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/services.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shopyo/core/app/bloc_observer.dart';
 import 'package:shopyo/core/app/env.variables.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/di/injection_container.dart';
+import 'package:shopyo/core/service/push_notification/firebase_cloud_messaging.dart';
 import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 
 import 'package:shopyo/shopyo_store_app.dart';
@@ -26,6 +26,7 @@ void main() async {
       : await Firebase.initializeApp();
   await SharedPref().instantiatePreferences();
   await setupInjector();
+  await FirebaseCloudMessaging.instance.init();
   Bloc.observer = AppBlocObserver();
 
   await SystemChrome.setPreferredOrientations([
