@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
+import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/bloc/add_notification/add_notification_bloc.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/create/create_notification_bottom_sheet.dart';
 
 class CreateNotification extends StatelessWidget {
@@ -29,7 +32,10 @@ class CreateNotification extends StatelessWidget {
           onPressed: () {
             CustomBottomSheet.showModalBottomSheetContainer(
               context: context,
-              widget: CreateNotificationBottomSheet(),
+              widget: BlocProvider(
+                create: (context) => sl<AddNotificationBloc>(),
+                child: CreateNotificationBottomSheet(),
+              ),
             );
           },
           backgroundColor: ColorsDark.blueDark,

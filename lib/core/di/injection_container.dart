@@ -12,6 +12,7 @@ import 'package:shopyo/features/admin/add_categories/presentation/blocs/create_c
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/delete_category/delete_category_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/get_all_admin_categories/get_all_admin_categories_bloc.dart';
 import 'package:shopyo/features/admin/add_categories/presentation/blocs/update_category/update_category_bloc.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/bloc/add_notification/add_notification_bloc.dart';
 import 'package:shopyo/features/admin/add_products/data/data_source/products_admin_data_source.dart';
 import 'package:shopyo/features/admin/add_products/data/repos/products_admin_repo.dart';
 import 'package:shopyo/features/admin/add_products/presentation/blocs/create_product/create_product_bloc.dart';
@@ -39,6 +40,7 @@ Future<void> setupInjector() async {
   await _initCategoriesAdmin();
   await _initProductsAdmin();
   await _initUsersAdmin();
+  await _initAddNotification();
 }
 
 Future<void> _initCore() async {
@@ -95,4 +97,8 @@ Future<void> _initUsersAdmin() async {
     ..registerLazySingleton(() => UsersDataSource(sl()))
     ..registerFactory(() => GetAllUsersBloc(sl()))
     ..registerFactory(() => DeleteUserBloc(sl()));
+}
+
+Future<void> _initAddNotification() async {
+  sl.registerFactory(AddNotificationBloc.new);
 }
