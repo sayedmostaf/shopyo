@@ -5,6 +5,7 @@ import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/bloc/add_notification/add_notification_bloc.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/bloc/get_all_notification_admin/get_all_notification_admin_bloc.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/bloc/send_notification/send_notification_bloc.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/refactors/add_notifications_body.dart';
 
 class AddNotificationsScreen extends StatelessWidget {
@@ -20,6 +21,7 @@ class AddNotificationsScreen extends StatelessWidget {
                 ..add(GetAllNotificationAdminEvent.getAllNotification()),
         ),
         BlocProvider(create: (context) => sl<AddNotificationBloc>()),
+        BlocProvider(create: (context) => sl<SendNotificationBloc>()),
       ],
       child: Scaffold(
         backgroundColor: ColorsDark.mainColor,
