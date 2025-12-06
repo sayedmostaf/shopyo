@@ -7,9 +7,14 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_notifications/data/models/add_notification_model.dart';
 
 class EditNotificationBottomSheet extends StatefulWidget {
-  const EditNotificationBottomSheet({super.key});
+  const EditNotificationBottomSheet({
+    super.key,
+    required this.notificationModel,
+  });
+  final AddNotificationModel notificationModel;
 
   @override
   State<EditNotificationBottomSheet> createState() =>
@@ -23,6 +28,13 @@ class _EditNotificationBottomSheetState
   TextEditingController productIdController = TextEditingController();
 
   final formKey = GlobalKey<FormState>();
+  @override
+  void initState() {
+    super.initState();
+    titleController.text = widget.notificationModel.title;
+    bodyController.text = widget.notificationModel.body;
+    productIdController.text = widget.notificationModel.productId.toString();
+  }
 
   @override
   void dispose() {
@@ -137,5 +149,19 @@ class _EditNotificationBottomSheetState
     );
   }
 
-  void _validAddNotification(BuildContext context) {}
+  void _validAddNotification(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      widget.notificationModel.title = titleController.text.isEmpty
+          ? widget.notificationModel.title
+          : titleController.text.trim();
+      widget.notificationModel.body = bodyController.text.isEmpty
+          ? widget.notificationModel.body
+          : bodyController.text.trim();
+      widget.notificationModel.productId = productIdController.text.isEmpty
+          ? widget.notificationModel.productId
+          : int.parse(productIdController.text.trim());
+      widget.notificationModel.save();
+      context.pop();
+    }
+  }
 }

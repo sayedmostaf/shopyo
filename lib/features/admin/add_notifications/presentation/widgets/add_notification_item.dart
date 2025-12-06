@@ -37,7 +37,7 @@ class AddNotificationItem extends StatelessWidget {
               children: [
                 Icon(Icons.delete, color: Colors.red),
                 SizedBox(width: 40.w),
-                EditNotification(),
+                EditNotification(notificationModel: notificationModel),
                 SizedBox(width: 40.w),
                 Icon(Icons.send, color: Colors.green),
               ],
