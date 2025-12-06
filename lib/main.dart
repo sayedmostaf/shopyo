@@ -6,6 +6,7 @@ import 'package:shopyo/core/app/bloc_observer.dart';
 import 'package:shopyo/core/app/env.variables.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/di/injection_container.dart';
+import 'package:shopyo/core/service/hive/hive_database.dart';
 import 'package:shopyo/core/service/push_notification/firebase_cloud_messaging.dart';
 import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 
@@ -27,6 +28,7 @@ void main() async {
   await SharedPref().instantiatePreferences();
   await setupInjector();
   await FirebaseCloudMessaging.instance.init();
+  await HiveDatabase().setup();
   Bloc.observer = AppBlocObserver();
 
   await SystemChrome.setPreferredOrientations([
