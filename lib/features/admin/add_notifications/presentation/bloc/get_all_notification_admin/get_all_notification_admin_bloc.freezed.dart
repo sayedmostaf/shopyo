@@ -128,11 +128,11 @@ return getAllNotification(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( bool isNotLoading)?  getAllNotification,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function()?  getAllNotification,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case FetchAllNotificationAdminEvent() when getAllNotification != null:
-return getAllNotification(_that.isNotLoading);case _:
+return getAllNotification();case _:
   return orElse();
 
 }
@@ -150,11 +150,11 @@ return getAllNotification(_that.isNotLoading);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( bool isNotLoading)  getAllNotification,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function()  getAllNotification,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case FetchAllNotificationAdminEvent():
-return getAllNotification(_that.isNotLoading);case _:
+return getAllNotification();case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -171,11 +171,11 @@ return getAllNotification(_that.isNotLoading);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( bool isNotLoading)?  getAllNotification,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function()?  getAllNotification,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case FetchAllNotificationAdminEvent() when getAllNotification != null:
-return getAllNotification(_that.isNotLoading);case _:
+return getAllNotification();case _:
   return null;
 
 }
@@ -225,73 +225,39 @@ String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
 
 
 class FetchAllNotificationAdminEvent with DiagnosticableTreeMixin implements GetAllNotificationAdminEvent {
-  const FetchAllNotificationAdminEvent({required this.isNotLoading});
+  const FetchAllNotificationAdminEvent();
   
 
- final  bool isNotLoading;
 
-/// Create a copy of GetAllNotificationAdminEvent
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$FetchAllNotificationAdminEventCopyWith<FetchAllNotificationAdminEvent> get copyWith => _$FetchAllNotificationAdminEventCopyWithImpl<FetchAllNotificationAdminEvent>(this, _$identity);
+
 
 
 @override
 void debugFillProperties(DiagnosticPropertiesBuilder properties) {
   properties
     ..add(DiagnosticsProperty('type', 'GetAllNotificationAdminEvent.getAllNotification'))
-    ..add(DiagnosticsProperty('isNotLoading', isNotLoading));
+    ;
 }
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchAllNotificationAdminEvent&&(identical(other.isNotLoading, isNotLoading) || other.isNotLoading == isNotLoading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FetchAllNotificationAdminEvent);
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isNotLoading);
+int get hashCode => runtimeType.hashCode;
 
 @override
 String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
-  return 'GetAllNotificationAdminEvent.getAllNotification(isNotLoading: $isNotLoading)';
+  return 'GetAllNotificationAdminEvent.getAllNotification()';
 }
 
 
 }
 
-/// @nodoc
-abstract mixin class $FetchAllNotificationAdminEventCopyWith<$Res> implements $GetAllNotificationAdminEventCopyWith<$Res> {
-  factory $FetchAllNotificationAdminEventCopyWith(FetchAllNotificationAdminEvent value, $Res Function(FetchAllNotificationAdminEvent) _then) = _$FetchAllNotificationAdminEventCopyWithImpl;
-@useResult
-$Res call({
- bool isNotLoading
-});
 
 
-
-
-}
-/// @nodoc
-class _$FetchAllNotificationAdminEventCopyWithImpl<$Res>
-    implements $FetchAllNotificationAdminEventCopyWith<$Res> {
-  _$FetchAllNotificationAdminEventCopyWithImpl(this._self, this._then);
-
-  final FetchAllNotificationAdminEvent _self;
-  final $Res Function(FetchAllNotificationAdminEvent) _then;
-
-/// Create a copy of GetAllNotificationAdminEvent
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') $Res call({Object? isNotLoading = null,}) {
-  return _then(FetchAllNotificationAdminEvent(
-isNotLoading: null == isNotLoading ? _self.isNotLoading : isNotLoading // ignore: cast_nullable_to_non_nullable
-as bool,
-  ));
-}
-
-
-}
 
 /// @nodoc
 mixin _$GetAllNotificationAdminState implements DiagnosticableTreeMixin {
