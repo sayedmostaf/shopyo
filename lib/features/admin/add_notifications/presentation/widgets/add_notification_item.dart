@@ -10,10 +10,16 @@ import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/add_notifications/data/models/add_notification_model.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/delete/delete_notification_widget.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/edit/edit_notification.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/widgets/send/send_notification_widget.dart';
 
 class AddNotificationItem extends StatelessWidget {
-  const AddNotificationItem({super.key, required this.notificationModel});
+  const AddNotificationItem({
+    super.key,
+    required this.notificationModel,
+    required this.index,
+  });
   final AddNotificationModel notificationModel;
+  final int index;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -40,7 +46,10 @@ class AddNotificationItem extends StatelessWidget {
                 SizedBox(width: 40.w),
                 EditNotification(notificationModel: notificationModel),
                 SizedBox(width: 40.w),
-                Icon(Icons.send, color: Colors.green),
+                SendNotificationWidget(
+                  notificationModel: notificationModel,
+                  index: index,
+                ),
               ],
             ),
           ],
