@@ -8,6 +8,7 @@ import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/add_notifications/data/models/add_notification_model.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/widgets/delete/delete_notification_widget.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/edit/edit_notification.dart';
 
 class AddNotificationItem extends StatelessWidget {
@@ -35,7 +36,7 @@ class AddNotificationItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Icon(Icons.delete, color: Colors.red),
+                DeleteNotificationWidget(notificationModel: notificationModel),
                 SizedBox(width: 40.w),
                 EditNotification(notificationModel: notificationModel),
                 SizedBox(width: 40.w),

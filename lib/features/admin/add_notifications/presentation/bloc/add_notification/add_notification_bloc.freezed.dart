@@ -61,12 +61,13 @@ extension AddNotificationEventPatterns on AddNotificationEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( CreateNotificationEvent value)?  createNotification,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _Started value)?  started,TResult Function( CreateNotificationEvent value)?  createNotification,TResult Function( DeleteNotificationEvent value)?  deleteNotification,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case CreateNotificationEvent() when createNotification != null:
-return createNotification(_that);case _:
+return createNotification(_that);case DeleteNotificationEvent() when deleteNotification != null:
+return deleteNotification(_that);case _:
   return orElse();
 
 }
@@ -84,12 +85,13 @@ return createNotification(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( CreateNotificationEvent value)  createNotification,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _Started value)  started,required TResult Function( CreateNotificationEvent value)  createNotification,required TResult Function( DeleteNotificationEvent value)  deleteNotification,}){
 final _that = this;
 switch (_that) {
 case _Started():
 return started(_that);case CreateNotificationEvent():
-return createNotification(_that);case _:
+return createNotification(_that);case DeleteNotificationEvent():
+return deleteNotification(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -106,12 +108,13 @@ return createNotification(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( CreateNotificationEvent value)?  createNotification,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _Started value)?  started,TResult? Function( CreateNotificationEvent value)?  createNotification,TResult? Function( DeleteNotificationEvent value)?  deleteNotification,}){
 final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started(_that);case CreateNotificationEvent() when createNotification != null:
-return createNotification(_that);case _:
+return createNotification(_that);case DeleteNotificationEvent() when deleteNotification != null:
+return deleteNotification(_that);case _:
   return null;
 
 }
@@ -128,11 +131,12 @@ return createNotification(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( AddNotificationModel notificationModel)?  createNotification,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  started,TResult Function( AddNotificationModel notificationModel)?  createNotification,TResult Function( AddNotificationModel notificationModel)?  deleteNotification,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case CreateNotificationEvent() when createNotification != null:
-return createNotification(_that.notificationModel);case _:
+return createNotification(_that.notificationModel);case DeleteNotificationEvent() when deleteNotification != null:
+return deleteNotification(_that.notificationModel);case _:
   return orElse();
 
 }
@@ -150,11 +154,12 @@ return createNotification(_that.notificationModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( AddNotificationModel notificationModel)  createNotification,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  started,required TResult Function( AddNotificationModel notificationModel)  createNotification,required TResult Function( AddNotificationModel notificationModel)  deleteNotification,}) {final _that = this;
 switch (_that) {
 case _Started():
 return started();case CreateNotificationEvent():
-return createNotification(_that.notificationModel);case _:
+return createNotification(_that.notificationModel);case DeleteNotificationEvent():
+return deleteNotification(_that.notificationModel);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -171,11 +176,12 @@ return createNotification(_that.notificationModel);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( AddNotificationModel notificationModel)?  createNotification,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  started,TResult? Function( AddNotificationModel notificationModel)?  createNotification,TResult? Function( AddNotificationModel notificationModel)?  deleteNotification,}) {final _that = this;
 switch (_that) {
 case _Started() when started != null:
 return started();case CreateNotificationEvent() when createNotification != null:
-return createNotification(_that.notificationModel);case _:
+return createNotification(_that.notificationModel);case DeleteNotificationEvent() when deleteNotification != null:
+return deleteNotification(_that.notificationModel);case _:
   return null;
 
 }
@@ -285,6 +291,78 @@ class _$CreateNotificationEventCopyWithImpl<$Res>
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') $Res call({Object? notificationModel = null,}) {
   return _then(CreateNotificationEvent(
+notificationModel: null == notificationModel ? _self.notificationModel : notificationModel // ignore: cast_nullable_to_non_nullable
+as AddNotificationModel,
+  ));
+}
+
+
+}
+
+/// @nodoc
+
+
+class DeleteNotificationEvent with DiagnosticableTreeMixin implements AddNotificationEvent {
+  const DeleteNotificationEvent({required this.notificationModel});
+  
+
+ final  AddNotificationModel notificationModel;
+
+/// Create a copy of AddNotificationEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$DeleteNotificationEventCopyWith<DeleteNotificationEvent> get copyWith => _$DeleteNotificationEventCopyWithImpl<DeleteNotificationEvent>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'AddNotificationEvent.deleteNotification'))
+    ..add(DiagnosticsProperty('notificationModel', notificationModel));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is DeleteNotificationEvent&&(identical(other.notificationModel, notificationModel) || other.notificationModel == notificationModel));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,notificationModel);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'AddNotificationEvent.deleteNotification(notificationModel: $notificationModel)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $DeleteNotificationEventCopyWith<$Res> implements $AddNotificationEventCopyWith<$Res> {
+  factory $DeleteNotificationEventCopyWith(DeleteNotificationEvent value, $Res Function(DeleteNotificationEvent) _then) = _$DeleteNotificationEventCopyWithImpl;
+@useResult
+$Res call({
+ AddNotificationModel notificationModel
+});
+
+
+
+
+}
+/// @nodoc
+class _$DeleteNotificationEventCopyWithImpl<$Res>
+    implements $DeleteNotificationEventCopyWith<$Res> {
+  _$DeleteNotificationEventCopyWithImpl(this._self, this._then);
+
+  final DeleteNotificationEvent _self;
+  final $Res Function(DeleteNotificationEvent) _then;
+
+/// Create a copy of AddNotificationEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? notificationModel = null,}) {
+  return _then(DeleteNotificationEvent(
 notificationModel: null == notificationModel ? _self.notificationModel : notificationModel // ignore: cast_nullable_to_non_nullable
 as AddNotificationModel,
   ));
