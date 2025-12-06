@@ -10,6 +10,7 @@ import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/bloc/add_notification/add_notification_bloc.dart';
+import 'package:shopyo/features/admin/add_notifications/presentation/bloc/get_all_notification_admin/get_all_notification_admin_bloc.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/create/create_notification_bottom_sheet.dart';
 
 class CreateNotification extends StatelessWidget {
@@ -36,6 +37,13 @@ class CreateNotification extends StatelessWidget {
                 create: (context) => sl<AddNotificationBloc>(),
                 child: CreateNotificationBottomSheet(),
               ),
+              whenComplete: () {
+                context.read<GetAllNotificationAdminBloc>().add(
+                  GetAllNotificationAdminEvent.getAllNotification(
+                    isNotLoading: false,
+                  ),
+                );
+              },
             );
           },
           backgroundColor: ColorsDark.blueDark,

@@ -3,14 +3,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_admin.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/extensions/date_extension.dart';
 import 'package:shopyo/core/style/colors/colors_dark.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/admin/add_notifications/data/models/add_notification_model.dart';
 import 'package:shopyo/features/admin/add_notifications/presentation/widgets/edit/edit_notification.dart';
 
 class AddNotificationItem extends StatelessWidget {
-  const AddNotificationItem({super.key});
-
+  const AddNotificationItem({super.key, required this.notificationModel});
+  final AddNotificationModel notificationModel;
   @override
   Widget build(BuildContext context) {
     return CustomContainerLinearAdmin(
@@ -21,11 +23,14 @@ class AddNotificationItem extends StatelessWidget {
         child: Column(
           children: [
             Spacer(),
-            NotificationInfo(title: 'Title: ', body: 'viewafd'),
+            NotificationInfo(title: 'Title: ', body: notificationModel.title),
             Spacer(),
-            NotificationInfo(title: 'Body: ', body: 'body adsfdfafad'),
+            NotificationInfo(title: 'Body: ', body: notificationModel.body),
             Spacer(),
-            NotificationInfo(title: 'Created At: ', body: '17-2-2024'),
+            NotificationInfo(
+              title: 'Created At: ',
+              body: notificationModel.createAt.getFormatDayMonthYear(),
+            ),
             Spacer(),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,

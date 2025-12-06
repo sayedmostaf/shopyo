@@ -33,6 +33,7 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   image_picker: ^1.2.0
+  intl: ^0.20.2
   json_serializable: ^6.11.1
   permission_handler: ^12.0.1
   pretty_dio_logger: ^1.4.0
@@ -88,4 +89,5 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
+
 ## dart run build_runner build --delete-conflicting-outputs
