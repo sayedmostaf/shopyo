@@ -9,6 +9,7 @@ import 'package:shopyo/features/admin/home_admin/presentation/screens/home_admin
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/auth/presentation/screens/login_screen.dart';
 import 'package:shopyo/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/main/presentation/screen/main_screen.dart';
 
 class AppRoutes {
@@ -39,8 +40,13 @@ class AppRoutes {
         );
       case homeAdmin:
         return BaseRoutes(page: HomeAdminScreen());
-      case mainCustomer: 
-        return BaseRoutes(page: MainScreen());
+      case mainCustomer:
+        return BaseRoutes(
+          page: BlocProvider(
+            create: (context) => sl<MainCubit>(),
+            child: MainScreen(),
+          ),
+        );
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }
