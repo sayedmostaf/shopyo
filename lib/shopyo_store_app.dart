@@ -70,9 +70,9 @@ class ShopyoStoreApp extends StatelessWidget {
                     onGenerateRoute: AppRoutes.onGenerateRoute,
                     initialRoute:
                         SharedPref().getString(PrefKeys.accessToken) != null
-                        ? SharedPref().getString(PrefKeys.userRole) != 'admin'
+                        ? SharedPref().getString(PrefKeys.userRole) == 'admin'
                               ? AppRoutes.homeAdmin
-                              : AppRoutes.homeCustomer
+                              : AppRoutes.mainCustomer
                         : AppRoutes.login,
                   );
                 },

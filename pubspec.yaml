@@ -18,12 +18,14 @@ dependencies:
   firebase_messaging: ^16.0.4
   flutter:
     sdk: flutter
+  flutter_animate: ^4.5.2
   flutter_bloc: ^9.1.1
   flutter_dotenv: ^6.0.0
   flutter_localizations:
     sdk: flutter
   flutter_native_splash: ^2.4.6
   flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.2.3
   flutter_zoom_drawer: ^3.2.0
   fluttertoast: ^9.0.0
   freezed: ^3.2.3

@@ -35,6 +35,7 @@ import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 
 final sl = GetIt.instance;
 Future<void> setupInjector() async {
@@ -45,6 +46,7 @@ Future<void> setupInjector() async {
   await _initProductsAdmin();
   await _initUsersAdmin();
   await _initAddNotification();
+  await _initMain();
 }
 
 Future<void> _initCore() async {
@@ -110,4 +112,7 @@ Future<void> _initAddNotification() async {
     ..registerFactory(() => SendNotificationBloc(sl()))
     ..registerLazySingleton(() => AddNotificationRepo(sl()))
     ..registerLazySingleton(AddNotificationDataSource.new);
+}
+Future<void> _initMain() async {
+  sl.registerFactory(MainCubit.new);
 }
