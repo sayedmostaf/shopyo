@@ -5,10 +5,11 @@ import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/auth/data/models/user_role_response.dart';
 
 class UserProfileInfo extends StatelessWidget {
-  const UserProfileInfo({super.key});
-
+  const UserProfileInfo({super.key, required this.userInfo});
+  final UserRoleResponse userInfo;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,13 +22,12 @@ class UserProfileInfo extends StatelessWidget {
             fit: BoxFit.fill,
             errorWidget: (context, url, error) =>
                 Icon(Icons.error, color: Colors.red, size: 70),
-            imageUrl:
-                'https://plus.unsplash.com/premium_photo-1700575181289-b5248a43e7f0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            imageUrl: userInfo.userImage!,
           ),
         ),
         SizedBox(height: 7.h),
         TextApp(
-          text: 'sAYED'.toLowerCase().toCapitalized(),
+          text: userInfo.userName!.toLowerCase().toCapitalized(),
           theme: context.textStyle.copyWith(
             fontSize: 18.sp,
             fontWeight: FontWeightHelper.bold,
@@ -35,7 +35,7 @@ class UserProfileInfo extends StatelessWidget {
         ),
         SizedBox(height: 7.h),
         TextApp(
-          text: 'sayed@gmail.com',
+          text: userInfo.userEmail!,
           theme: context.textStyle.copyWith(
             fontSize: 14.sp,
             fontWeight: FontWeightHelper.regular,

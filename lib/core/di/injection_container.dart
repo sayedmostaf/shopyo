@@ -36,6 +36,9 @@ import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
+import 'package:shopyo/features/customer/profile/data/data_source/profile_data_source.dart';
+import 'package:shopyo/features/customer/profile/data/repos/profile_repo.dart';
+import 'package:shopyo/features/customer/profile/presentation/bloc/profile_bloc/profile_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> setupInjector() async {
@@ -47,6 +50,7 @@ Future<void> setupInjector() async {
   await _initUsersAdmin();
   await _initAddNotification();
   await _initMain();
+  await _initProfile();
 }
 
 Future<void> _initCore() async {
@@ -113,6 +117,14 @@ Future<void> _initAddNotification() async {
     ..registerLazySingleton(() => AddNotificationRepo(sl()))
     ..registerLazySingleton(AddNotificationDataSource.new);
 }
+
 Future<void> _initMain() async {
   sl.registerFactory(MainCubit.new);
+}
+
+Future<void> _initProfile() async {
+  sl
+    ..registerFactory(() => ProfileBloc(sl()))
+    ..registerLazySingleton(() => ProfileRepo(sl()))
+    ..registerLazySingleton(() => ProfileDataSource(sl()));
 }
