@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/app/upload_image/cubit/upload_image_cubit.dart';
+import 'package:shopyo/core/common/screens/custom_web_view.dart';
 import 'package:shopyo/core/common/screens/page_under_build_screen.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/routes/base_routes.dart';
@@ -17,6 +18,7 @@ class AppRoutes {
   static const String signUp = 'signUp';
   static const String homeAdmin = 'homeAdmin';
   static const String mainCustomer = 'main-screen';
+  static const String webview = 'webView';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -47,6 +49,8 @@ class AppRoutes {
             child: MainScreen(),
           ),
         );
+      case webview:
+        return BaseRoutes(page: CustomWebView(url: args! as String));
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }

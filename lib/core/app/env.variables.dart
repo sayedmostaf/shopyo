@@ -10,6 +10,7 @@ class EnvVariable {
   late String _notificationBaseUrl;
   late String _firebaseServiceAccountPath;
   late String _firebaseProjectId;
+  late String _buildDeveloper;
 
   Future<void> init({required EnvTypeEnum envType}) async {
     // حمّل ملف البيئة المناسب
@@ -29,6 +30,7 @@ class EnvVariable {
     _notificationBaseUrl = dotenv.get('NOTIFICATION_BASEURL');
     _firebaseServiceAccountPath = dotenv.get('FIREBASE_SERVICE_ACCOUNT_PATH');
     _firebaseProjectId = dotenv.get('FIREBASE_PROJECT_ID');
+    _buildDeveloper = dotenv.get('BUILD_DEVELOPER');
   }
 
   // تحويل String → Enum
@@ -51,4 +53,5 @@ class EnvVariable {
   String get firebaseServiceAccountPath => _firebaseServiceAccountPath;
 
   String get firebaseProjectId => _firebaseProjectId;
+  String get buildDeveloper => _buildDeveloper;
 }
