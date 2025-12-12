@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/dialogs/custom_dialog.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
-import 'package:shopyo/core/routes/app_routes.dart';
-import 'package:shopyo/core/service/shared_pref/pref_keys.dart';
-import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 import 'package:shopyo/core/style/fonts/font_family_helper.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/core/utils/app_logout.dart';
