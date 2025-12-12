@@ -7,6 +7,7 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/language/lang_keys.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/customer/profile/presentation/bloc/profile_bloc/profile_bloc.dart';
+import 'package:shopyo/features/customer/profile/presentation/widgets/build_developer.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/dark_mode_change.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/language_change.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/user_profile_info.dart';
@@ -50,6 +51,8 @@ class ProfileBody extends StatelessWidget {
             CustomFadeInRight(duration: 400, child: LanguageChange()),
             SizedBox(height: 20.h),
             CustomFadeInRight(duration: 400, child: DarkModeChange()),
+            SizedBox(height: 20.h),
+            CustomFadeInRight(duration: 400, child: BuildDeveloper()),
           ],
         ),
       ),
