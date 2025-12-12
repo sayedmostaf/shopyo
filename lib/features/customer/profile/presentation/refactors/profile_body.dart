@@ -11,6 +11,7 @@ import 'package:shopyo/features/customer/profile/presentation/widgets/build_deve
 import 'package:shopyo/features/customer/profile/presentation/widgets/build_version.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/dark_mode_change.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/language_change.dart';
+import 'package:shopyo/features/customer/profile/presentation/widgets/logout_widget.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/notifications_change.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/user_profile_info.dart';
 import 'package:shopyo/features/customer/profile/presentation/widgets/user_profile_shimmer.dart';
@@ -59,6 +60,8 @@ class ProfileBody extends StatelessWidget {
             CustomFadeInRight(duration: 400, child: NotificationsChange()),
             SizedBox(height: 20.h),
             CustomFadeInRight(duration: 400, child: BuildVersion()),
+            SizedBox(height: 20.h),
+            CustomFadeInRight(duration: 400, child: LogoutWidget()),
           ],
         ),
       ),
