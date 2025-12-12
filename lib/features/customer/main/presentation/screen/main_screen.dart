@@ -9,7 +9,7 @@ import 'package:shopyo/features/customer/home/home_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/main/presentation/refactors/main_bottom_nav_bar.dart';
 import 'package:shopyo/features/customer/main/presentation/refactors/main_customer_app_bar.dart';
-import 'package:shopyo/features/customer/profile/profile_screen.dart';
+import 'package:shopyo/features/customer/profile/presentation/screen/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
