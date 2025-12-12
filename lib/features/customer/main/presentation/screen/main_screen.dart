@@ -5,7 +5,7 @@ import 'package:shopyo/core/enums/nav_bar_enum.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/features/customer/categories/categories_screen.dart';
 import 'package:shopyo/features/customer/favorites/favorites_screen.dart';
-import 'package:shopyo/features/customer/home/home_screen.dart';
+import 'package:shopyo/features/customer/home/presentation/screen/home_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/main/presentation/refactors/main_bottom_nav_bar.dart';
 import 'package:shopyo/features/customer/main/presentation/refactors/main_customer_app_bar.dart';
