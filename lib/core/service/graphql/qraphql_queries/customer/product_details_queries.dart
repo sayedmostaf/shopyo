@@ -12,10 +12,12 @@ class ProductDetailsQueries {
           {
           product(id: $id) {
             title
+            price
+            images
             description
           }
         },
-        ''',
+      ''',
     };
   }
 }

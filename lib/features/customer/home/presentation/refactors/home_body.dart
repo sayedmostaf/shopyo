@@ -6,6 +6,7 @@ import 'package:shopyo/core/common/loading/loading_shimmer.dart';
 import 'package:shopyo/core/common/widgets/custom_button.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/language/lang_keys.dart';
+import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_all_categories_bloc/get_all_categories_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_all_products_bloc/get_all_products_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_banners_bloc/get_banners_bloc.dart';
@@ -112,7 +113,9 @@ class HomeBody extends StatelessWidget {
                       backgroundColor: context.color.bluePinkLight,
                       textColor: Colors.black,
                       text: context.translate(LangKeys.viewAll),
-                      onPressed: () {},
+                      onPressed: () {
+                        context.pushName(AppRoutes.productsViewAll);
+                      },
                     ),
                   );
                 }
