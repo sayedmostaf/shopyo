@@ -23,6 +23,12 @@ class HomeBody extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<GetBannersBloc>().add(GetBannersEvent.getBanners());
+        context.read<GetAllCategoriesBloc>().add(
+          GetAllCategoriesEvent.getCategories(),
+        );
+        context.read<GetAllProductsBloc>().add(
+          GetAllProductsEvent.getProducts(),
+        );
       },
       child: CustomScrollView(
         controller: scrollController,
@@ -90,22 +96,30 @@ class HomeBody extends StatelessWidget {
             ),
           ),
           SliverToBoxAdapter(child: SizedBox(height: 20.h)),
-          if (context.read<GetAllProductsBloc>().isProductListSmallerThan10)
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 15.w),
-                child: CustomButton(
-                  height: 50.h,
-                  lastRadius: 10,
-                  threeRadius: 10,
-                  width: MediaQuery.of(context).size.width,
-                  backgroundColor: context.color.bluePinkLight,
-                  textColor: Colors.black,
-                  text: context.translate(LangKeys.viewAll),
-                  onPressed: () {},
-                ),
-              ),
+          SliverToBoxAdapter(
+            child: BlocBuilder<GetAllProductsBloc, GetAllProductsState>(
+              builder: (context, state) {
+                if (context
+                    .read<GetAllProductsBloc>()
+                    .isProductListSmallerThan10) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 15.w),
+                    child: CustomButton(
+                      height: 50.h,
+                      lastRadius: 10,
+                      threeRadius: 10,
+                      width: MediaQuery.of(context).size.width,
+                      backgroundColor: context.color.bluePinkLight,
+                      textColor: Colors.black,
+                      text: context.translate(LangKeys.viewAll),
+                      onPressed: () {},
+                    ),
+                  );
+                }
+                return SizedBox.shrink();
+              },
             ),
+          ),
           SliverToBoxAdapter(child: SizedBox(height: 60.h)),
         ],
       ),
