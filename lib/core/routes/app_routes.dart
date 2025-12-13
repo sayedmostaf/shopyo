@@ -10,6 +10,7 @@ import 'package:shopyo/features/admin/home_admin/presentation/screens/home_admin
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/auth/presentation/screens/login_screen.dart';
 import 'package:shopyo/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:shopyo/features/customer/category/presentation/screen/category_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/main/presentation/screen/main_screen.dart';
 import 'package:shopyo/features/customer/product_details/presentation/screen/product_details_screen.dart';
@@ -21,6 +22,7 @@ class AppRoutes {
   static const String mainCustomer = 'main-screen';
   static const String webview = 'webView';
   static const String productDetails = 'product-details';
+  static const String category = 'category';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -55,6 +57,12 @@ class AppRoutes {
         return BaseRoutes(page: CustomWebView(url: args! as String));
       case productDetails:
         return BaseRoutes(page: ProductDetailsScreen(productId: args! as int));
+      case category:
+        return BaseRoutes(
+          page: CategoryScreen(
+            categoryInfo: args! as ({int categoryId, String categoryName}),
+          ),
+        );
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }
