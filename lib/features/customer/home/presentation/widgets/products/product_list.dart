@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/features/admin/add_products/data/models/get_all_product_response.dart';
 import 'package:shopyo/features/customer/home/presentation/widgets/products/product_item.dart';
 
 class ProductList extends StatelessWidget {
-  const ProductList({super.key});
-
+  const ProductList({super.key, required this.productList});
+  final List<ProductGetAllModel> productList;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,11 +23,10 @@ class ProductList extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           return ProductItem(
-            price: 100,
-            categoryName: "category",
-            title: "title",
-            imageUrl:
-                'https://images.unsplash.com/photo-1708115106932-9e4fb96e4725?q=80&w=1750&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+            price: productList[index].price ?? 0,
+            categoryName: productList[index].category!.name ?? '',
+            title: productList[index].title ?? '',
+            imageUrl: productList[index].images!.first,
           );
         },
       ),

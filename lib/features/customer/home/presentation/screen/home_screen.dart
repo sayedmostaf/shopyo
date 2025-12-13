@@ -5,6 +5,7 @@ import 'package:shopyo/core/common/animations/animate_do.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_all_categories_bloc/get_all_categories_bloc.dart';
+import 'package:shopyo/features/customer/home/presentation/bloc/get_all_products_bloc/get_all_products_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_banners_bloc/get_banners_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/refactors/home_body.dart';
 
@@ -43,6 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
           create: (context) =>
               sl<GetAllCategoriesBloc>()
                 ..add(GetAllCategoriesEvent.getCategories()),
+        ),
+        BlocProvider(
+          create: (context) =>
+              sl<GetAllProductsBloc>()..add(GetAllProductsEvent.getProducts()),
         ),
       ],
       child: Stack(
