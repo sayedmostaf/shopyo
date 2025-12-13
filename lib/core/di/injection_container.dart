@@ -37,6 +37,7 @@ import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:shopyo/features/customer/home/data/data_source/home_data_source.dart';
 import 'package:shopyo/features/customer/home/data/repos/home_repo.dart';
+import 'package:shopyo/features/customer/home/presentation/bloc/get_all_categories_bloc/get_all_categories_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_banners_bloc/get_banners_bloc.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/profile/data/data_source/profile_data_source.dart';
@@ -136,6 +137,7 @@ Future<void> _initProfile() async {
 Future<void> _initHome() async {
   sl
     ..registerFactory(() => GetBannersBloc(sl()))
+    ..registerFactory(() => GetAllCategoriesBloc(sl()))
     ..registerLazySingleton(() => HomeRepo(sl()))
     ..registerLazySingleton(() => HomeDataSource(sl()));
 }

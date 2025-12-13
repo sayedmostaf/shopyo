@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shopyo/features/admin/add_categories/data/models/get_all_categories_response.dart';
 import 'package:shopyo/features/customer/home/presentation/widgets/categories/category_item.dart';
 
 class CategoriesList extends StatelessWidget {
-  const CategoriesList({super.key});
+  const CategoriesList({super.key, required this.categoriesList});
+  final List<GetAllCategoriesModel> categoriesList;
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,12 @@ class CategoriesList extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
             return CategoryItem(
-              image:
-                  'https://images.unsplash.com/photo-1682687220777-2c60708d6889?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-              title: 'book',
+              image: categoriesList[index].image ?? '',
+              title: categoriesList[index].name ?? '',
             );
           },
           separatorBuilder: (context, index) => SizedBox(width: 15.w),
-          itemCount: 7,
+          itemCount: categoriesList.length,
         ),
       ),
     );
