@@ -35,6 +35,9 @@ import 'package:shopyo/features/admin/users/presentation/blocs/get_all_users/get
 import 'package:shopyo/features/auth/data/data_source/auth_data_source.dart';
 import 'package:shopyo/features/auth/data/repos/auth_repo.dart';
 import 'package:shopyo/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:shopyo/features/customer/home/data/data_source/home_data_source.dart';
+import 'package:shopyo/features/customer/home/data/repos/home_repo.dart';
+import 'package:shopyo/features/customer/home/presentation/bloc/get_banners_bloc/get_banners_bloc.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopyo/features/customer/profile/data/repos/profile_repo.dart';
@@ -51,6 +54,7 @@ Future<void> setupInjector() async {
   await _initAddNotification();
   await _initMain();
   await _initProfile();
+  await _initHome();
 }
 
 Future<void> _initCore() async {
@@ -127,4 +131,11 @@ Future<void> _initProfile() async {
     ..registerFactory(() => ProfileBloc(sl()))
     ..registerLazySingleton(() => ProfileRepo(sl()))
     ..registerLazySingleton(() => ProfileDataSource(sl()));
+}
+
+Future<void> _initHome() async {
+  sl
+    ..registerFactory(() => GetBannersBloc(sl()))
+    ..registerLazySingleton(() => HomeRepo(sl()))
+    ..registerLazySingleton(() => HomeDataSource(sl()));
 }
