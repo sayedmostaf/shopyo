@@ -3,6 +3,7 @@ import 'package:shopyo/core/common/widgets/customer_app_bar.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/features/customer/product_details/presentation/refactors/add_to_cart_button.dart';
 import 'package:shopyo/features/customer/product_details/presentation/refactors/product_deatils_custom_painter.dart';
+import 'package:shopyo/features/customer/product_details/presentation/refactors/products_details_body.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
   const ProductDetailsScreen({super.key, required this.productId});
@@ -30,6 +31,7 @@ class ProductDetailsScreen extends StatelessWidget {
               ),
             ),
           ),
+          ProductsDetailsBody(),
         ],
       ),
     );

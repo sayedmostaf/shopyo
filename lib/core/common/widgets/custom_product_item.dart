@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_customer.dart';
+import 'package:shopyo/core/common/widgets/custom_favorite_button.dart';
+import 'package:shopyo/core/common/widgets/custom_share_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
@@ -35,19 +37,8 @@ class CustomProductItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.zero,
-                  icon: Icon(Icons.share, color: context.color.textColor),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  padding: EdgeInsets.zero,
-                  icon: Icon(
-                    Icons.favorite_outline,
-                    color: context.color.textColor,
-                  ),
-                ),
+                CustomShareButton(size: 25),
+                CustomFavoriteButton(size: 25),
               ],
             ),
             Flexible(
