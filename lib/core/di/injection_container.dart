@@ -47,6 +47,9 @@ import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main
 import 'package:shopyo/features/customer/product_details/data/data_source/product_details_data_source.dart';
 import 'package:shopyo/features/customer/product_details/data/repos/product_details_repo.dart';
 import 'package:shopyo/features/customer/product_details/presentation/bloc/product_details_bloc/product_details_bloc.dart';
+import 'package:shopyo/features/customer/products_view_all/data/data_source/products_view_all_data_source.dart';
+import 'package:shopyo/features/customer/products_view_all/data/repos/products_view_all_repo.dart';
+import 'package:shopyo/features/customer/products_view_all/presentation/bloc/products_view_all_bloc/products_view_all_bloc.dart';
 import 'package:shopyo/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopyo/features/customer/profile/data/repos/profile_repo.dart';
 import 'package:shopyo/features/customer/profile/presentation/bloc/profile_bloc/profile_bloc.dart';
@@ -65,6 +68,7 @@ Future<void> setupInjector() async {
   await _initHome();
   await _initProductDetails();
   await _initCategory();
+  await _initProductsViewAll();
 }
 
 Future<void> _initCore() async {
@@ -164,4 +168,11 @@ Future<void> _initCategory() async {
     ..registerFactory(() => GetCategoryBloc(sl()))
     ..registerLazySingleton(() => CategoryRepo(sl()))
     ..registerLazySingleton(() => CategoryDataSource(sl()));
+}
+
+Future<void> _initProductsViewAll() async {
+  sl
+    ..registerFactory(() => ProductsViewAllBloc(sl()))
+    ..registerLazySingleton(() => ProductsViewAllRepo(sl()))
+    ..registerLazySingleton(() => ProductsViewAllDataSource(sl()));
 }

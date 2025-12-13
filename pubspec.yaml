@@ -9,12 +9,14 @@ environment:
 
 dependencies:
   animate_do: ^4.2.0
+  bloc_concurrency: ^0.3.0
   build_runner: ^2.9.0
   cached_network_image: ^3.4.1
   carousel_slider: ^5.1.1
   connectivity_plus: ^7.0.0
   cupertino_icons: ^1.0.8
   dio: ^5.9.0
+  equatable: ^2.0.7
   firebase_core: ^4.1.1
   firebase_messaging: ^16.0.4
   flutter:
@@ -94,4 +96,5 @@ flutter:
           weight: 500
         - asset: assets/fonts/english/poppins/Poppins-Regular.ttf
           weight: 400
+
 ## dart run build_runner build --delete-conflicting-outputs
