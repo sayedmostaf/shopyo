@@ -9,13 +9,11 @@ class BannersResponse {
   factory BannersResponse.fromJson(Map<String, dynamic> json) =>
       _$BannersResponseFromJson(json);
   List<String> get bannerImageList {
-    final list = data.banners
-        .where((e) => e.title!.contains(searchBannersKeyWord))
-        .toList();
+    final list = data.banners.take(5).expand((e) => e.images).toList();
     if (list.isEmpty) {
       return [];
     }
-    return list.first.images;
+    return list;
   }
 }
 
