@@ -5,22 +5,27 @@ import 'package:shopyo/core/common/widgets/custom_container_linear_customer.dart
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
+import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 
-class ProductItem extends StatelessWidget {
-  const ProductItem({
+class CustomProductItem extends StatelessWidget {
+  const CustomProductItem({
     super.key,
     required this.imageUrl,
     required this.title,
     required this.categoryName,
     required this.price,
+    required this.productId,
   });
   final String imageUrl, title, categoryName;
   final double price;
+  final int productId;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        context.pushName(AppRoutes.productDetails, arguments: productId);
+      },
       child: CustomContainerLinearCustomer(
         width: 165.w,
         height: 250.h,
