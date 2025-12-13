@@ -5,10 +5,12 @@ import 'package:shopyo/core/common/widgets/custom_share_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/customer/product_details/data/models/product_details_response.dart';
 import 'package:shopyo/features/customer/product_details/presentation/widgets/product_details_image_slider.dart';
 
 class ProductsDetailsBody extends StatelessWidget {
-  const ProductsDetailsBody({super.key});
+  const ProductsDetailsBody({super.key, required this.productModel});
+  final ProductDetailsModel productModel;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +28,10 @@ class ProductsDetailsBody extends StatelessWidget {
               ],
             ),
             SizedBox(height: 10.h),
-            ProductDetailsImageSlider(),
+            ProductDetailsImageSlider(imageList: productModel.images),
             SizedBox(height: 30.h),
             TextApp(
-              text: 'Title',
+              text: productModel.title ?? '',
               theme: context.textStyle.copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.bold,
@@ -38,7 +40,7 @@ class ProductsDetailsBody extends StatelessWidget {
             SizedBox(height: 15.h),
             //description
             TextApp(
-              text: 'description',
+              text: productModel.description ?? '',
               theme: context.textStyle.copyWith(
                 fontSize: 16.sp,
                 fontWeight: FontWeightHelper.regular,
