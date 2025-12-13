@@ -15,6 +15,7 @@ import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main
 import 'package:shopyo/features/customer/main/presentation/screen/main_screen.dart';
 import 'package:shopyo/features/customer/product_details/presentation/screen/product_details_screen.dart';
 import 'package:shopyo/features/customer/products_view_all/presentation/screen/products_view_all_screen.dart';
+import 'package:shopyo/features/customer/search/presentation/screen/search_screen.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -25,6 +26,7 @@ class AppRoutes {
   static const String productDetails = 'product-details';
   static const String category = 'category';
   static const String productsViewAll = 'productsViewAll';
+  static const String search = 'search';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -67,6 +69,8 @@ class AppRoutes {
         );
       case productsViewAll:
         return BaseRoutes(page: const ProductsViewAllScreen());
+      case search:
+        return BaseRoutes(page: const SearchScreen());
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }
