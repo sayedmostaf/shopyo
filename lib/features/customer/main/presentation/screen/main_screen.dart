@@ -4,6 +4,7 @@ import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/enums/nav_bar_enum.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/features/customer/categories/categories_screen.dart';
+import 'package:shopyo/features/customer/category/presentation/screen/category_screen.dart';
 import 'package:shopyo/features/customer/favorites/favorites_screen.dart';
 import 'package:shopyo/features/customer/home/presentation/screen/home_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
@@ -35,7 +36,7 @@ class MainScreen extends StatelessWidget {
                   builder: (context, state) {
                     final cubit = context.read<MainCubit>();
                     if (cubit.navBarEnum == NavBarEnum.categories) {
-                      return const CategoriesScreen();
+                      return CategoriesScreen();
                     } else if (cubit.navBarEnum == NavBarEnum.favorites) {
                       return const FavoritesScreen();
                     } else if (cubit.navBarEnum == NavBarEnum.profile) {
