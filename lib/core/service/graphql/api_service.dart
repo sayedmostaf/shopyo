@@ -12,6 +12,7 @@ import 'package:shopyo/features/auth/data/models/login_response.dart';
 import 'package:shopyo/features/auth/data/models/sign_up_response.dart';
 import 'package:shopyo/features/auth/data/models/user_role_response.dart';
 import 'package:shopyo/features/customer/home/data/models/banners_response.dart';
+import 'package:shopyo/features/customer/product_details/data/models/product_details_response.dart';
 part 'api_service.g.dart';
 
 const String baseUrl = 'https://api.escuelajs.co';
@@ -71,4 +72,8 @@ abstract class ApiService {
   Future<void> deleteUser(@Body() Map<String, dynamic> mutation);
   @POST(graphql)
   Future<BannersResponse> getBanners(@Body() Map<String, dynamic> query);
+  @POST(graphql)
+  Future<ProductDetailsResponse> productDetails(
+    @Body() Map<String, dynamic> query,
+  );
 }
