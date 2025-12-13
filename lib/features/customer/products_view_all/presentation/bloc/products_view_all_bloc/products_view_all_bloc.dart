@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/service/graphql/api_result.dart';
 import 'package:shopyo/features/customer/products_view_all/data/repos/products_view_all_repo.dart';
@@ -14,7 +16,7 @@ class ProductsViewAllBloc
         const ProductsViewAllInitialState(productsList: [], hasMoreData: true),
       ) {
     on<GetProductsViewAllEvent>(_getProductsViewAll);
-    on<LoadMoreProductsEvent>(_loadMoreProducts);
+    on<LoadMoreProductsEvent>(_loadMoreProducts, transformer: droppable());
   }
   int offset = 6;
   FutureOr<void> _getProductsViewAll(
@@ -77,5 +79,18 @@ class ProductsViewAllBloc
         );
       },
     );
+  }
+
+  void handlePagination({
+    required ScrollController scrollController,
+    required double loadMorePosition,
+  }) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      final offset = scrollController.offset;
+      final maxExtent = scrollController.position.maxScrollExtent;
+      if (offset >= maxExtent - loadMorePosition) {
+        add(LoadMoreProductsEvent());
+      }
+    });
   }
 }
