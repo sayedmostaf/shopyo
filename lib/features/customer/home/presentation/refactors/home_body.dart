@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/loading/loading_shimmer.dart';
 import 'package:shopyo/features/customer/home/presentation/bloc/get_banners_bloc/get_banners_bloc.dart';
 import 'package:shopyo/features/customer/home/presentation/widgets/banners/banner_sliders.dart';
+import 'package:shopyo/features/customer/home/presentation/widgets/categories/categories_shimmer.dart';
 
 class HomeBody extends StatelessWidget {
   const HomeBody({super.key, required this.scrollController});
@@ -43,6 +44,7 @@ class HomeBody extends StatelessWidget {
               },
             ),
           ),
+          SliverToBoxAdapter(child: CategoriesShimmer()),
         ],
       ),
     );
