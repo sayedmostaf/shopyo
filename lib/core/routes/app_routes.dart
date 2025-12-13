@@ -12,6 +12,7 @@ import 'package:shopyo/features/auth/presentation/screens/login_screen.dart';
 import 'package:shopyo/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
 import 'package:shopyo/features/customer/main/presentation/screen/main_screen.dart';
+import 'package:shopyo/features/customer/product_details/presentation/screen/product_details_screen.dart';
 
 class AppRoutes {
   static const String login = 'login';
@@ -19,6 +20,7 @@ class AppRoutes {
   static const String homeAdmin = 'homeAdmin';
   static const String mainCustomer = 'main-screen';
   static const String webview = 'webView';
+  static const String productDetails = 'product-details';
 
   static Route<void> onGenerateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -51,6 +53,8 @@ class AppRoutes {
         );
       case webview:
         return BaseRoutes(page: CustomWebView(url: args! as String));
+      case productDetails:
+        return BaseRoutes(page: ProductDetailsScreen(productId: args! as int));
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }
