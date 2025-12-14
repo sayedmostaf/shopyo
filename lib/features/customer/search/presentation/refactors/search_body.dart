@@ -20,12 +20,16 @@ class SearchBody extends StatelessWidget {
           BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
               return state.when(
-                // initial: () {
-                //   return const SizedBox.shrink();
-                // },
+                initial: () {
+                  return const SizedBox.shrink();
+                },
                 loading: () {
-                  return CircularProgressIndicator(
-                    color: context.color.textColor,
+                  return Expanded(
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        color: context.color.textColor,
+                      ),
+                    ),
                   );
                 },
                 success: (productList) {

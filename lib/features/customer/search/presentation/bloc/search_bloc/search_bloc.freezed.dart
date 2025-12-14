@@ -319,10 +319,11 @@ extension SearchStatePatterns on SearchState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LoadinState value)?  loading,TResult Function( SuccessState value)?  success,TResult Function( EmptyState value)?  empty,TResult Function( ErrorState value)?  error,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( Initial value)?  initial,TResult Function( LoadingState value)?  loading,TResult Function( SuccessState value)?  success,TResult Function( EmptyState value)?  empty,TResult Function( ErrorState value)?  error,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case LoadinState() when loading != null:
+case Initial() when initial != null:
+return initial(_that);case LoadingState() when loading != null:
 return loading(_that);case SuccessState() when success != null:
 return success(_that);case EmptyState() when empty != null:
 return empty(_that);case ErrorState() when error != null:
@@ -344,10 +345,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LoadinState value)  loading,required TResult Function( SuccessState value)  success,required TResult Function( EmptyState value)  empty,required TResult Function( ErrorState value)  error,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( Initial value)  initial,required TResult Function( LoadingState value)  loading,required TResult Function( SuccessState value)  success,required TResult Function( EmptyState value)  empty,required TResult Function( ErrorState value)  error,}){
 final _that = this;
 switch (_that) {
-case LoadinState():
+case Initial():
+return initial(_that);case LoadingState():
 return loading(_that);case SuccessState():
 return success(_that);case EmptyState():
 return empty(_that);case ErrorState():
@@ -368,10 +370,11 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LoadinState value)?  loading,TResult? Function( SuccessState value)?  success,TResult? Function( EmptyState value)?  empty,TResult? Function( ErrorState value)?  error,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( Initial value)?  initial,TResult? Function( LoadingState value)?  loading,TResult? Function( SuccessState value)?  success,TResult? Function( EmptyState value)?  empty,TResult? Function( ErrorState value)?  error,}){
 final _that = this;
 switch (_that) {
-case LoadinState() when loading != null:
+case Initial() when initial != null:
+return initial(_that);case LoadingState() when loading != null:
 return loading(_that);case SuccessState() when success != null:
 return success(_that);case EmptyState() when empty != null:
 return empty(_that);case ErrorState() when error != null:
@@ -392,9 +395,10 @@ return error(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  loading,TResult Function( List<ProductGetAllModel> productsList)?  success,TResult Function()?  empty,TResult Function( String error)?  error,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  initial,TResult Function()?  loading,TResult Function( List<ProductGetAllModel> productsList)?  success,TResult Function()?  empty,TResult Function( String error)?  error,required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case LoadinState() when loading != null:
+case Initial() when initial != null:
+return initial();case LoadingState() when loading != null:
 return loading();case SuccessState() when success != null:
 return success(_that.productsList);case EmptyState() when empty != null:
 return empty();case ErrorState() when error != null:
@@ -416,9 +420,10 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  loading,required TResult Function( List<ProductGetAllModel> productsList)  success,required TResult Function()  empty,required TResult Function( String error)  error,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  initial,required TResult Function()  loading,required TResult Function( List<ProductGetAllModel> productsList)  success,required TResult Function()  empty,required TResult Function( String error)  error,}) {final _that = this;
 switch (_that) {
-case LoadinState():
+case Initial():
+return initial();case LoadingState():
 return loading();case SuccessState():
 return success(_that.productsList);case EmptyState():
 return empty();case ErrorState():
@@ -439,9 +444,10 @@ return error(_that.error);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  loading,TResult? Function( List<ProductGetAllModel> productsList)?  success,TResult? Function()?  empty,TResult? Function( String error)?  error,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  initial,TResult? Function()?  loading,TResult? Function( List<ProductGetAllModel> productsList)?  success,TResult? Function()?  empty,TResult? Function( String error)?  error,}) {final _that = this;
 switch (_that) {
-case LoadinState() when loading != null:
+case Initial() when initial != null:
+return initial();case LoadingState() when loading != null:
 return loading();case SuccessState() when success != null:
 return success(_that.productsList);case EmptyState() when empty != null:
 return empty();case ErrorState() when error != null:
@@ -456,8 +462,8 @@ return error(_that.error);case _:
 /// @nodoc
 
 
-class LoadinState implements SearchState {
-  const LoadinState();
+class Initial implements SearchState {
+  const Initial();
   
 
 
@@ -467,7 +473,39 @@ class LoadinState implements SearchState {
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadinState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is Initial);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'SearchState.initial()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class LoadingState implements SearchState {
+  const LoadingState();
+  
+
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LoadingState);
 }
 
 
