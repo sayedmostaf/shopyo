@@ -11,6 +11,7 @@ import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/service/shared_pref/pref_keys.dart';
 import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 import 'package:shopyo/core/style/theme/app_theme.dart';
+import 'package:shopyo/features/customer/favorites/presentation/bloc/favorites_cubit/favorites_cubit.dart';
 
 class ShopyoStoreApp extends StatelessWidget {
   const ShopyoStoreApp({super.key});
@@ -21,12 +22,17 @@ class ShopyoStoreApp extends StatelessWidget {
       valueListenable: ConnectivityController.instance.isConnected,
       builder: (_, value, _) {
         if (value) {
-          return BlocProvider(
-            create: (context) => sl<AppCubit>()
-              ..changeAppThemeMode(
-                sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
-              )
-              ..getSavedLanguage(),
+          return MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (context) => sl<AppCubit>()
+                  ..changeAppThemeMode(
+                    sharedMode: SharedPref().getBoolean(PrefKeys.themeMode),
+                  )
+                  ..getSavedLanguage(),
+              ),
+              BlocProvider(create: (context) => sl<FavoritesCubit>()),
+            ],
             child: ScreenUtilInit(
               minTextAdapt: true,
               designSize: const Size(375, 812),
