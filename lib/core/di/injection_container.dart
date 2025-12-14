@@ -53,6 +53,9 @@ import 'package:shopyo/features/customer/products_view_all/presentation/bloc/pro
 import 'package:shopyo/features/customer/profile/data/data_source/profile_data_source.dart';
 import 'package:shopyo/features/customer/profile/data/repos/profile_repo.dart';
 import 'package:shopyo/features/customer/profile/presentation/bloc/profile_bloc/profile_bloc.dart';
+import 'package:shopyo/features/customer/search/data/data_source/search_data_source.dart';
+import 'package:shopyo/features/customer/search/data/repos/search_repo.dart';
+import 'package:shopyo/features/customer/search/presentation/bloc/search_bloc/search_bloc.dart';
 
 final sl = GetIt.instance;
 Future<void> setupInjector() async {
@@ -69,6 +72,7 @@ Future<void> setupInjector() async {
   await _initProductDetails();
   await _initCategory();
   await _initProductsViewAll();
+  await _initSearch();
 }
 
 Future<void> _initCore() async {
@@ -175,4 +179,11 @@ Future<void> _initProductsViewAll() async {
     ..registerFactory(() => ProductsViewAllBloc(sl()))
     ..registerLazySingleton(() => ProductsViewAllRepo(sl()))
     ..registerLazySingleton(() => ProductsViewAllDataSource(sl()));
+}
+
+Future<void> _initSearch() async {
+  sl
+    ..registerFactory(() => SearchBloc(sl()))
+    ..registerLazySingleton(() => SearchRepo(sl()))
+    ..registerLazySingleton(() => SearchDataSource(sl()));
 }
