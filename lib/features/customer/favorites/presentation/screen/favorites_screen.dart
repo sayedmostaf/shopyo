@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shopyo/features/customer/favorites/presentation/refactors/favorites_body.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'Favorites Screen',
-        style: TextStyle(color: Colors.white, fontSize: 20),
-      ),
-    );
+    return const FavoritesBody();
   }
 }

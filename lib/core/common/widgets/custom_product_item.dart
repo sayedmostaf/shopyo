@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/widgets/custom_container_linear_customer.dart';
 import 'package:shopyo/core/common/widgets/custom_favorite_button.dart';
@@ -9,6 +10,7 @@ import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/extensions/string_extension.dart';
 import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/customer/favorites/presentation/bloc/favorites_cubit/favorites_cubit.dart';
 
 class CustomProductItem extends StatelessWidget {
   const CustomProductItem({
@@ -38,7 +40,25 @@ class CustomProductItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomShareButton(size: 25),
-                CustomFavoriteButton(size: 25),
+                BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    return CustomFavoriteButton(
+                      size: 25,
+                      isFavorites: context.read<FavoritesCubit>().isFavorite(
+                        productId.toString(),
+                      ),
+                      onTap: () async {
+                        await context.read<FavoritesCubit>().manageFavorites(
+                          productId: productId.toString(),
+                          title: title,
+                          image: imageUrl,
+                          price: price.toString(),
+                          categoryName: categoryName,
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
             Flexible(
