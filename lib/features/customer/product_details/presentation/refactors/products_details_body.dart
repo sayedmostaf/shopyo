@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/widgets/custom_favorite_button.dart';
 import 'package:shopyo/core/common/widgets/custom_share_button.dart';
 import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
+import 'package:shopyo/features/customer/favorites/presentation/bloc/favorites_cubit/favorites_cubit.dart';
 import 'package:shopyo/features/customer/product_details/data/models/product_details_response.dart';
 import 'package:shopyo/features/customer/product_details/presentation/widgets/product_details_image_slider.dart';
 
@@ -24,7 +26,25 @@ class ProductsDetailsBody extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 CustomShareButton(size: 30),
-                CustomFavoriteButton(size: 30),
+                BlocBuilder<FavoritesCubit, FavoritesState>(
+                  builder: (context, state) {
+                    return CustomFavoriteButton(
+                      size: 30,
+                      isFavorites: context.read<FavoritesCubit>().isFavorite(
+                        productModel.id ?? '',
+                      ),
+                      onTap: () async {
+                        await context.read<FavoritesCubit>().manageFavorites(
+                          productId: productModel.id ?? '',
+                          title: productModel.title ?? '',
+                          image: productModel.images.first,
+                          price: productModel.price.toString(),
+                          categoryName: productModel.category!.name,
+                        );
+                      },
+                    );
+                  },
+                ),
               ],
             ),
             SizedBox(height: 10.h),
