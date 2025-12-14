@@ -8,6 +8,7 @@ import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/enums/nav_bar_enum.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/language/lang_keys.dart';
+import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/core/style/images/app_images.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
@@ -44,7 +45,9 @@ class MainCustomerAppBar extends StatelessWidget
                 CustomFadeInLeft(
                   duration: 800,
                   child: CustomLinearButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.pushName(AppRoutes.search);
+                    },
                     child: Center(child: SvgPicture.asset(AppImages.search)),
                   ),
                 ),
