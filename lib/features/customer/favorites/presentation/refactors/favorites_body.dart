@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shopyo/core/common/widgets/custom_product_item.dart';
+import 'package:shopyo/core/common/widgets/text_app.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
+import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/features/customer/favorites/presentation/bloc/favorites_cubit/favorites_cubit.dart';
 
 class FavoritesBody extends StatelessWidget {
@@ -17,7 +19,18 @@ class FavoritesBody extends StatelessWidget {
           if (context.read<FavoritesCubit>().favoritesList.isEmpty) {
             return Column(
               children: [
-                Icon(Icons.favorite, color: context.color.textColor, size: 50),
+                Icon(
+                  Icons.favorite_outline,
+                  color: context.color.textColor,
+                  size: 150,
+                ),
+                TextApp(
+                  text: 'Choose Your Favorite Products',
+                  theme: context.textStyle.copyWith(
+                    fontWeight: FontWeightHelper.bold,
+                    fontSize: 16.sp,
+                  ),
+                ),
               ],
             );
           }
