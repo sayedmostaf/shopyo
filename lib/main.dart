@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shopyo/core/di/injection_container.dart';
 import 'package:shopyo/core/service/hive/hive_database.dart';
 import 'package:shopyo/core/service/push_notification/firebase_cloud_messaging.dart';
+import 'package:shopyo/core/service/push_notification/local_notfication_service.dart';
 import 'package:shopyo/core/service/shared_pref/shared_pref.dart';
 
 import 'package:shopyo/shopyo_store_app.dart';
@@ -23,11 +24,16 @@ void main() async {
             messagingSenderId: "297809629495",
             projectId: "shopyo-9e378",
           ),
-        )
-      : await Firebase.initializeApp();
+        ).whenComplete(() {
+          FirebaseCloudMessaging.instance.init();
+          LocalNotificationService.init();
+        })
+      : await Firebase.initializeApp().whenComplete(() {
+          FirebaseCloudMessaging.instance.init();
+          LocalNotificationService.init();
+        });
   await SharedPref().instantiatePreferences();
   await setupInjector();
-  await FirebaseCloudMessaging.instance.init();
   await HiveDatabase().setup();
   Bloc.observer = AppBlocObserver();
 
