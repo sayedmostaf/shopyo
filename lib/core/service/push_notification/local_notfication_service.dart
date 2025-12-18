@@ -26,7 +26,11 @@ class LocalNotificationService {
     streamController.add(notificationResponse);
   }
 
-  static Future<void> showSimpleNotification() async {
+  static Future<void> showSimpleNotification({
+    required String title,
+    required String body,
+    required String payload,
+  }) async {
     const notificationDetails = NotificationDetails(
       android: AndroidNotificationDetails(
         'shopyo-id',
@@ -42,10 +46,10 @@ class LocalNotificationService {
     );
     await flutterLocalNotificationsPlugin.show(
       0,
-      'shopyo-title',
-      'shopyo-body',
+      title,
+      body,
       notificationDetails,
-      payload: 'sayed mostafa',
+      payload: payload,
     );
   }
 }
