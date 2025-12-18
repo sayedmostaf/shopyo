@@ -71,6 +71,7 @@ class AppRoutes {
         return BaseRoutes(page: const ProductsViewAllScreen());
       case search:
         return BaseRoutes(page: const SearchScreen());
+
       default:
         return BaseRoutes(page: PageUnderBuildScreen());
     }
