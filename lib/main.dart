@@ -24,13 +24,17 @@ void main() async {
             messagingSenderId: "297809629495",
             projectId: "shopyo-9e378",
           ),
-        )
-      : await Firebase.initializeApp();
+        ).whenComplete(() {
+          FirebaseCloudMessaging.instance.init();
+          LocalNotificationService.init();
+        })
+      : await Firebase.initializeApp().whenComplete(() {
+          FirebaseCloudMessaging.instance.init();
+          LocalNotificationService.init();
+        });
   await SharedPref().instantiatePreferences();
   await setupInjector();
-  await FirebaseCloudMessaging.instance.init();
   await HiveDatabase().setup();
-  await LocalNotificationService.init();
   Bloc.observer = AppBlocObserver();
 
   await SystemChrome.setPreferredOrientations([

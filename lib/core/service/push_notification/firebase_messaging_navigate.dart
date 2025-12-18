@@ -18,21 +18,22 @@ class FirebaseMessagingNavigate {
   }
 
   // background
-  static Future<void> backgroundHandler(RemoteMessage? message) async {
+  static void backgroundHandler(RemoteMessage? message) {
     if (message != null) {
-      await _navigate(message);
+      _navigate(message);
     }
   }
 
   // terminate
-  static Future<void> terminateHandler(RemoteMessage? message) async {
+  static void terminateHandler(RemoteMessage? message) {
     if (message != null) {
-      await _navigate(message);
+      _navigate(message);
     }
   }
 
-  static Future<void> _navigate(RemoteMessage message) async {
-    await sl<GlobalKey<NavigatorState>>().currentState!.context.pushName(
+  static void _navigate(RemoteMessage message) {
+    if (int.parse(message.data['productId'].toString()) == -1) return;
+    sl<GlobalKey<NavigatorState>>().currentState!.context.pushName(
       AppRoutes.productDetails,
       arguments: int.parse(message.data['productId'].toString()),
     );
