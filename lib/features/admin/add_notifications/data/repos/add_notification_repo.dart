@@ -21,4 +21,16 @@ class AddNotificationRepo {
       return ApiResult.failure(errorMessage);
     }
   }
+
+  Future<void> addNotificationsToAllUsersFirebase({
+    required String title,
+    required String body,
+    required int productId,
+  }) async {
+    await _dataSource.addNotificationsToAlUsersFirebase(
+      title: title,
+      body: body,
+      productId: productId,
+    );
+  }
 }
