@@ -5,7 +5,7 @@ import 'package:shopyo/core/enums/nav_bar_enum.dart';
 import 'package:shopyo/core/extensions/context_extension.dart';
 import 'package:shopyo/core/routes/app_routes.dart';
 import 'package:shopyo/core/service/push_notification/local_notfication_service.dart';
-import 'package:shopyo/features/customer/categories/categories_screen.dart';
+import 'package:shopyo/features/customer/notifications/presentation/screen/notifications_screen.dart';
 import 'package:shopyo/features/customer/favorites/presentation/screen/favorites_screen.dart';
 import 'package:shopyo/features/customer/home/presentation/screen/home_screen.dart';
 import 'package:shopyo/features/customer/main/presentation/cubit/main_cubit/main_cubit.dart';
@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
                   builder: (context, state) {
                     final cubit = context.read<MainCubit>();
                     if (cubit.navBarEnum == NavBarEnum.categories) {
-                      return CategoriesScreen();
+                      return NotificationScreen();
                     } else if (cubit.navBarEnum == NavBarEnum.favorites) {
                       return const FavoritesScreen();
                     } else if (cubit.navBarEnum == NavBarEnum.profile) {
