@@ -1,7 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:shopyo/core/service/graphql/api_service.dart';
 import 'package:shopyo/core/service/graphql/qraphql_queries/auth/auth_queries.dart';
+import 'package:shopyo/core/utils/app_strings.dart';
 import 'package:shopyo/features/auth/data/models/login_request_body.dart';
 import 'package:shopyo/features/auth/data/models/login_response.dart';
 import 'package:shopyo/features/auth/data/models/sign_up_request_body.dart';
@@ -29,7 +31,16 @@ class AuthDataSource {
   }
 
   Future<SignUpResponse> signUp({required SignUpRequestBody body}) async {
-    final response = await _graphql.signUp(AuthQueries().signUpMapQuery(body: body));
+    final response = await _graphql.signUp(
+      AuthQueries().signUpMapQuery(body: body),
+    );
     return response;
+  }
+
+  Future<void> addUserIdFirebase({required String userId}) async {
+    await FirebaseFirestore.instance
+        .collection(usersCollection)
+        .doc(userId)
+        .set({});
   }
 }

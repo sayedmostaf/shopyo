@@ -55,6 +55,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         // save user id + role
         await SharedPref().setInt(PrefKeys.userId, user.userId ?? 0);
         await SharedPref().setString(PrefKeys.userRole, user.userRole ?? '');
+        await _repo.addUserIdFirebase(userId: user.userId.toString());
 
         if (emit.isDone) return;
         emit(AuthState.success(userRole: user.userRole ?? ""));

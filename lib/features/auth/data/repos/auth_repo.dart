@@ -34,4 +34,8 @@ class AuthRepo {
       return ApiResult.failure(LangKeys.loggedError);
     }
   }
+
+  Future<void> addUserIdFirebase({required String userId}) async {
+    await _dataSource.addUserIdFirebase(userId: userId);
+  }
 }
