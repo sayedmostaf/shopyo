@@ -7,20 +7,34 @@ import 'package:shopyo/core/style/fonts/font_weight_helper.dart';
 import 'package:shopyo/core/style/images/app_images.dart';
 
 class NotificationItem extends StatelessWidget {
-  const NotificationItem({super.key});
+  const NotificationItem({
+    super.key,
+    required this.title,
+    required this.body,
+    required this.createdAt,
+    required this.isSeen,
+    required this.onTapSelected,
+    required this.onTapRemoved,
+  });
+  final String title, body, createdAt;
+  final bool isSeen;
+  final VoidCallback onTapSelected, onTapRemoved;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       isThreeLine: true,
-      onTap: () {},
+      onTap: onTapSelected,
       leading: Container(
         height: 50.h,
         width: 50.w,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 1.5),
+          border: Border.all(
+            color: isSeen ? Colors.grey : Colors.white,
+            width: 1.5,
+          ),
         ),
         child: Center(
           child: SvgPicture.asset(
@@ -31,11 +45,11 @@ class NotificationItem extends StatelessWidget {
         ),
       ),
       title: TextApp(
-        text: 'title',
+        text: title,
         theme: context.textStyle.copyWith(
           fontSize: 12.sp,
           fontWeight: FontWeightHelper.medium,
-          color: Colors.white,
+          color: isSeen ? Colors.grey : Colors.white,
         ),
       ),
       subtitle: Column(
@@ -44,29 +58,29 @@ class NotificationItem extends StatelessWidget {
           SizedBox(height: 5.h),
           //Body
           TextApp(
-            text: 'Body',
+            text: body,
             theme: context.textStyle.copyWith(
               fontSize: 12.sp,
               fontWeight: FontWeightHelper.medium,
-              color: Colors.white,
+              color: isSeen ? Colors.grey : Colors.white,
             ),
           ),
           SizedBox(height: 5.h),
           //created at
           TextApp(
-            text: 'Created At',
+            text: createdAt,
             theme: context.textStyle.copyWith(
               fontSize: 12.sp,
               fontWeight: FontWeightHelper.medium,
-              color: Colors.white,
+              color: isSeen ? Colors.grey : Colors.green,
             ),
           ),
           SizedBox(height: 5.h),
-          Divider(color: Colors.white),
+          Divider(color: isSeen ? Colors.grey : Colors.white),
         ],
       ),
       trailing: GestureDetector(
-        onTap: () {},
+        onTap: onTapRemoved,
         child: Icon(Icons.close, color: Colors.yellow, size: 20),
       ),
     );
