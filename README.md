@@ -8,6 +8,7 @@
   ![Flutter](https://img.shields.io/badge/Flutter-3.8+-02569B?style=for-the-badge&logo=flutter&logoColor=white)
   ![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)
   ![Firebase](https://img.shields.io/badge/Firebase-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
+  ![Graphql](https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white)
   ![Hive](https://img.shields.io/badge/Hive-FF6B35?style=for-the-badge&logo=hive&logoColor=white)
   
   <p><em>Experience seamless online shopping with a beautifully crafted, feature-rich e-commerce platform built with modern Flutter architecture!</em></p>
@@ -45,6 +46,11 @@
         <img src="https://img.icons8.com/color/48/000000/firebase.png" width="40"/>
         <br><strong>Firebase Backend</strong>
         <br><em>Real-time updates</em>
+      </td>
+      <td align="center">
+        <img src="https://img.icons8.com/color/48/000000/graphql.png" width="40"/>
+        <br><strong>GraphQL & REST</strong>
+        <br><em>Flexible APIs</em>
       </td>
       <td align="center">
         <img src="https://img.icons8.com/color/48/000000/database.png" width="40"/>
@@ -113,7 +119,8 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
 
 ---
 
-### 🛠️ Tech Stack
+## 🛠️ Tech Stack
+
 <div align="center">
   <table>
     <tr>
