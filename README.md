@@ -1,7 +1,7 @@
 # 🛍️ Shopyo
 
 <div align="center">
-    <img src="assets/images/shopyo-cover.png" alt="Shopyo Cover"/>
+    <img src="screenshots/cover.png" alt="Shopyo Cover"/>
   
   <h3>🛒 Your Ultimate E-Commerce Solution 🛒</h3>
   
@@ -168,16 +168,32 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
 <summary><strong>🏠 Customer Experience</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="screenshots/customer_home.png" alt="Customer Home" width="200"/></td>
-    <td><img src="screenshots/categories.png" alt="Categories" width="200"/></td>
-    <td><img src="screenshots/product_details.png" alt="Product Details" width="200"/></td>
-    <td><img src="screenshots/cart.png" alt="Shopping Cart" width="200"/></td>
+    <td><img src="screenshots/customer/home.jpg" alt="Customer Home" width="200"/></td>
+    <td><img src="screenshots/customer/home-ar.jpg" alt="Customer Home Ar" width="200"/></td>
+    <td><img src="screenshots/customer/view-all.jpg" alt="Product All" width="200"/></td>
+    <td><img src="screenshots/customer/product-details.jpg" alt="Product Details" width="200"/></td>
+    <td><img src="screenshots/customer/product-details2.jpg" alt="Product Details2" width="200"/></td>
   </tr>
   <tr>
-    <td align="center"><em>Home Screen</em></td>
-    <td align="center"><em>Categories</em></td>
-    <td align="center"><em>Product Details</em></td>
-    <td align="center"><em>Shopping Cart</em></td>
+    <td align="center"><em>Customer Home</em></td>
+    <td align="center"><em>Customer Home Ar</em></td>
+    <td align="center"><em>All Products</em></td>
+    <td align="center"><em>Product Details 1</em></td>
+    <td align="center"><em>Product Details 2</em></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/customer/category.jpg" alt="Category" width="200"/></td>
+    <td><img src="screenshots/customer/favorite.jpg" alt="Favorite" width="200"/></td>
+    <td><img src="screenshots/customer/search.jpg" alt="Search" width="200"/></td>
+    <td><img src="screenshots/customer/search2.jpg" alt="Search2" width="200"/></td>
+    <td><img src="screenshots/customer/notification2.jpg" alt="Notification" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Category</em></td>
+    <td align="center"><em>Favorite</em></td>
+    <td align="center"><em>Search</em></td>
+    <td align="center"><em>Search 2</em></td>
+    <td align="center"><em>Notification</em></td>
   </tr>
 </table>
 </details>
@@ -186,16 +202,52 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
 <summary><strong>👨‍💼 Admin Dashboard</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="screenshots/admin_dashboard.png" alt="Admin Dashboard" width="200"/></td>
-    <td><img src="screenshots/add_product.png" alt="Add Product" width="200"/></td>
-    <td><img src="screenshots/manage_categories.png" alt="Manage Categories" width="200"/></td>
-    <td><img src="screenshots/users.png" alt="User Management" width="200"/></td>
+    <td><img src="screenshots/admin/drawer.jpg" alt="Drawer" width="200"/></td>
+    <td><img src="screenshots/admin/dashboard.jpg" alt="Admin Dashboard" width="200"/></td>
+    <td><img src="screenshots/admin/add-category.jpg" alt="Add Category" width="200"/></td>
+    <td><img src="screenshots/admin/update-category.jpg" alt="Update Category" width="200"/></td>
+    <td><img src="screenshots/admin/categories.jpg" alt="Categories" width="200"/></td>
   </tr>
   <tr>
+    <td align="center"><em>Drawer</em></td>
     <td align="center"><em>Dashboard</em></td>
-    <td align="center"><em>Add Product</em></td>
+    <td align="center"><em>Add Category</em></td>
+    <td align="center"><em>Update Category</em></td>
     <td align="center"><em>Categories</em></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin/add-product2.jpg" alt="Add Product1" width="200"/></td>
+    <td><img src="screenshots/admin/add-product.jpg" alt="Add Product2" width="200"/></td>
+    <td><img src="screenshots/admin/products.jpg" alt="Products" width="200"/></td>
+    <td><img src="screenshots/admin/update-product.jpg" alt="Update Product" width="200"/></td>
+    <td><img src="screenshots/admin/update-product2.jpg" alt="Update Product2" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Add Product 1</em></td>
+    <td align="center"><em>Add Product 2</em></td>
+    <td align="center"><em>Products</em></td>
+    <td align="center"><em>Update Product 1</em></td>
+    <td align="center"><em>Update Product 2</em></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin/send-notification.jpg" alt="Send Notification" width="200"/></td>
+    <td><img src="screenshots/admin/add_notification.jpg" alt="Add Notification" width="200"/></td>
+    <td><img src="screenshots/admin/update-notification.jpg" alt="Update Notification" width="200"/></td>
+    <td><img src="screenshots/admin/users.jpg" alt="Users" width="200"/></td>
+    <td><img src="screenshots/admin/user-search.jpg" alt="User Search" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Send Notification</em></td>
+    <td align="center"><em>Add Notification</em></td>
+    <td align="center"><em>"Update Notification"</em></td>
     <td align="center"><em>Users</em></td>
+    <td align="center"><em>User Search</em></td>
+  </tr>
+  <tr>
+    <td><img src="screenshots/admin/empty-search.jpg" alt="Empty Search" width="200"/></td>
+  </tr>
+  <tr>
+    <td align="center"><em>Empty Search</em></td>
   </tr>
 </table>
 </details>
@@ -204,14 +256,16 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
 <summary><strong>🔐 Authentication & Profile</strong> (Click to expand)</summary>
 <table>
   <tr>
-    <td><img src="screenshots/login.png" alt="Login" width="200"/></td>
-    <td><img src="screenshots/register.png" alt="Register" width="200"/></td>
-    <td><img src="screenshots/profile.png" alt="Profile" width="200"/></td>
+    <td><img src="screenshots/auth/signin.jpg" alt="Login" width="200"/></td>
+    <td><img src="screenshots/auth/signup.jpg" alt="Register" width="200"/></td>
+    <td><img src="screenshots/auth/profile1.jpg" alt="Profile Dark" width="200"/></td>
+    <td><img src="screenshots/auth/profile2.jpg" alt="Profile Light" width="200"/></td>
   </tr>
   <tr>
     <td align="center"><em>Login</em></td>
     <td align="center"><em>Register</em></td>
-    <td align="center"><em>Profile</em></td>
+    <td align="center"><em>Profile Dark</em></td>
+    <td align="center"><em>Profile Light</em></td>
   </tr>
 </table>
 </details>
