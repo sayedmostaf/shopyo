@@ -113,8 +113,7 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
 
 ---
 
-## 🛠️ Tech Stack
-
+### 🛠️ Tech Stack
 <div align="center">
   <table>
     <tr>
@@ -138,24 +137,39 @@ Built with Clean Architecture principles and modern Flutter best practices, Shop
       <td>Authentication, Firestore & Cloud Messaging</td>
     </tr>
     <tr>
+      <td><strong>API</strong></td>
+      <td><img src="https://img.shields.io/badge/GraphQL-E10098?style=flat&logo=graphql&logoColor=white" alt="GraphQL"/> <img src="https://img.shields.io/badge/REST-02569B?style=flat" alt="REST"/></td>
+      <td>GraphQL & REST API integration</td>
+    </tr>
+    <tr>
       <td><strong>Local Database</strong></td>
       <td><img src="https://img.shields.io/badge/Hive-FF6B35?style=flat" alt="Hive"/></td>
-      <td>Fast, lightweight local caching</td>
+      <td>Fast, lightweight local caching & offline support</td>
     </tr>
     <tr>
       <td><strong>State Management</strong></td>
       <td><img src="https://img.shields.io/badge/BLoC-0175C2?style=flat" alt="BLoC"/></td>
-      <td>Predictable state management with BLoC</td>
+      <td>Predictable state management with BLoC pattern</td>
     </tr>
     <tr>
-      <td><strong>API Client</strong></td>
+      <td><strong>HTTP Client</strong></td>
       <td><img src="https://img.shields.io/badge/Dio-00C7B7?style=flat" alt="Dio"/></td>
       <td>HTTP client with Retrofit integration</td>
+    </tr>
+    <tr>
+      <td><strong>Dependency Injection</strong></td>
+      <td><img src="https://img.shields.io/badge/GetIt-purple?style=flat" alt="GetIt"/></td>
+      <td>Service locator pattern</td>
     </tr>
     <tr>
       <td><strong>Architecture</strong></td>
       <td><img src="https://img.shields.io/badge/Clean_Architecture-61DAFB?style=flat" alt="Clean Architecture"/></td>
       <td>Scalable and maintainable code structure</td>
+    </tr>
+    <tr>
+      <td><strong>Version Control</strong></td>
+      <td><img src="https://img.shields.io/badge/GitHub-100000?style=flat&logo=github&logoColor=white" alt="GitHub"/></td>
+      <td>Source code management</td>
     </tr>
   </table>
 </div>
